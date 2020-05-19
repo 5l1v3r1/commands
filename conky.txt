@@ -1,0 +1,109 @@
+################################
+    ##     Visit : K4Linux.coM                    
+    ##                                             
+    ##      Like : fb.com/K4linux  
+    ##                                     
+    ##                                     
+    ##        Follow : Twitter.com/k4linux   
+    ##                                                                       
+    ################################
+
+
+
+
+    background yes
+    use_xft yes
+    xftalpha 0.6
+    own_window true
+    own_window_type desktop
+own_window_argb_visual yes
+    # 0 = transparent, 255 = solid
+own_window_argb_value 0
+    double_buffer yes
+    update_interval 1
+    maximum_width 200
+alignment top_right
+gap_x 5
+gap_y 32
+    no_buffers yes
+    uppercase no
+    cpu_avg_samples 5
+    net_avg_samples 5
+    diskio_avg_samples 5
+    if_up_strictness address
+    draw_shades no
+    draw_outline no
+    draw_borders yes
+    draw_graph_borders yes
+    default_color lightgray
+    default_shade_color red
+    default_outline_color green
+    short_units true
+    use_spacer none
+    xftfont DejaVu Sans Mono:size=9
+    template0 ${font Droid Sans:Bold:size=10}${color dodgerblue3}1 ${hr 2}$color${font}${voffset 1}
+    template1 ${alignr 80}${fs_used_perc /}% ${color green}${fs_bar 5}$color
+    template2 ${1 name 2}${alignr}${1 3 2} %
+    template3 ${if_up 5}${template0 2}down $alignr ${downspeed wlan0}/snup $alignr ${upspeed wlan0}/sntotal down$alignr${totaldown wlan0}ntotal up $alignr${totalup wlan0}$endif
+    #${execi 30 sudo hddtemp /dev/sda | grep ‘/dev/sda:’ | cut -c28-29}°C
+
+own_window_transparent yes
+own_window_colour 000000
+minimum_size 0 0
+    TEXT
+    $color${font}${font Droid Sans:size=30}$alignr${time %I:%M}$font$color${font Droid Sans:size=15}
+    $alignr${time %a}, ${time %d %b %y}$font$color
+
+    # SYS
+    ${template0 SYSTEM}
+    Power ${exec cat 30 /sys/class/power_supply/BAT0/capacity}% ${exec cat 30 /sys/class/power_supply/BAT0/status}
+    Kernel $alignr $kernel
+    Uptime $alignr $uptime
+    Temprature $alignr ${acpitemp}°C
+    # CPU
+    ${template0 CPU}
+    $color${font}Intel i5 2500k $alignr $cpu %
+    ${cpugraph}
+    # RAM
+    ${template0 RAM}
+    In use $alignr $mem
+    Used$alignr$memeasyfree
+    Buffers $alignr $buffers
+    Cache $alignr $cached
+    ${color lightgray}IP: ${color lightgray}${addr wlan0}${color green}
+    ${color lightgray}wlan0: ${color lightgray}DOWN: ${downspeed wlan0}${color deepblue}${voffset 1}
+    ${downspeedgraph wlan0 15,80}${voffset -1}
+
+    ${color lightgray}UP: ${upspeed wlan0}${color deepblue}${voffset 1}
+    ${upspeedgraph wlan0 15,80}${voffset -1}
+    #${template3 eth0 ETH0}
+    #${template3 wlan0 WLAN0}
+    #D: ${downspeed wlan0} k/s ${alignr}${color red}${downspeedgraph wlan0 20,80 444444 eeeeee} 
+    #U: ${upspeed wlan0} k/s ${alignr}${upspeedgraph wlan0   20,80 444444 eeeeee}$color
+    #DOWN ${color5}${voffset 1}${downspeedgraph wlan0 8,20}${voffset -1}
+    # TOP
+    ${template0 TOP}
+    $color${font Droid Sans:bold:size=8}CPU$font
+    1: ${cpu cpu1}% ${color red}${cpubar cpu1}$color
+    2: ${cpu cpu2}% ${color red}${cpubar cpu2}$color
+    3: ${cpu cpu3}% ${color red}${cpubar cpu3}$color
+    4: ${cpu cpu4}% ${color red}${cpubar cpu4}$color
+    ${processes}$alignr Running: ${running_processes}${voffset 5}
+    $color${font Droid Sans:bold:size=8}RAM$font
+    $memperc% ${color red}$membar$color
+    Usage:$alignr$mem/$memmax
+    #${template2 top_mem 2 mem}
+    #${template2 top_mem 3 mem}
+    # HDD
+    ${template0 HDD}
+    Root: ${template1 /}
+    /boot: ${template1 /boot}
+    /var: ${template1 /var}
+    /usr: ${template1 /usr}
+    /home: ${template1 /home}
+    #mnt/data: ${template1 /mnt/data}
+    #Root: ${fs_used_perc /}% ${color green}${fs_bar /}$color
+    #Home: ${template1 /home}
+    Usage:$alignr$fs_used/$fs_size
+    $color${font Droid Sans:bold:size=8}/dev/sda $font$alignr ${hddtemp /dev/sda}°C
+    ${diskiograph sda}

@@ -1,0 +1,68 @@
+use xsel instend of xclip
+
+##
+########### apache2 problem on termux ############ 
+
+before starting use tsu
+
+netstat -ltnp | grep :80
+kill -9 841
+
+
+$netstat -peanut | grep ':80'
+$kill pid       
+$kill -9 pid 
+
+
+
+then run the following to run apache2
+
+$apachectl	[Note: this starts apache2 normally too]
+
+to restart apache2
+
+$apachectl -k restaret
+
+to stop 
+$apachectl stop
+
+to start normally
+$apachectl start
+#################################################
+
+########### make default index.php
+
+httpd.conf file and add the following:
+
+<IfModule dir_module>
+
+    DirectoryIndex index.php
+
+    DirectoryIndex index.html
+
+</IfModule>
+
+
+##################### Get permission in octal ################
+stat -c "%a %n" file
+########## composer install problem and solutions ############
+Try
+
+$ composer install --ignore-platform-reqs
+
+
+#########$$$$$$$############# gnuplot terminal #####################
+gnuplot> set terminal dumb gnuplot> plot "runtime.txt"
+#########################################################
+java segment fault error solution : use tsu before running java
+###################### lock file ###############
+gpg -c file.txt
+
+now remove .txt file
+
+you get new encrypted file .txt.gpg
+
+to dycrypt 
+type: gpg file.txt.gpg
+
+then you will get original .txt file 
